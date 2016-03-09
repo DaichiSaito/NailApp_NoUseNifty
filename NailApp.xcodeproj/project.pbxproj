@@ -13,9 +13,16 @@
 		944B88191C8A8FD60042E911 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944B88171C8A8FD60042E911 /* Main.storyboard */; };
 		944B881B1C8A8FD60042E911 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 944B881A1C8A8FD60042E911 /* Assets.xcassets */; };
 		944B881E1C8A8FD60042E911 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944B881C1C8A8FD60042E911 /* LaunchScreen.storyboard */; };
+		944CC9E41C9014510029C723 /* HomeTabMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CC9E31C9014510029C723 /* HomeTabMainController.swift */; };
+		944CC9E61C9015780029C723 /* NavigationMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CC9E51C9015780029C723 /* NavigationMainController.swift */; };
+		944CC9E81C9017900029C723 /* CollectionViewMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CC9E71C9017900029C723 /* CollectionViewMainController.swift */; };
+		944CC9EA1C901A3B0029C723 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CC9E91C901A3B0029C723 /* MyCollectionViewCell.swift */; };
+		BC5BDAC2FF1CB07E9683E9B6 /* libPods-NailApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D1412DFEDE4F537A715391 /* libPods-NailApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		259AF81E475783C63C2EDB40 /* Pods-NailApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NailApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NailApp/Pods-NailApp.debug.xcconfig"; sourceTree = "<group>"; };
+		46D1412DFEDE4F537A715391 /* libPods-NailApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NailApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		944B880E1C8A8FD60042E911 /* NailApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NailApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		944B88111C8A8FD60042E911 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		944B88131C8A8FD60042E911 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +31,12 @@
 		944B881A1C8A8FD60042E911 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		944B881D1C8A8FD60042E911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		944B881F1C8A8FD60042E911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		944CC9E21C9013610029C723 /* NailApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NailApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		944CC9E31C9014510029C723 /* HomeTabMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabMainController.swift; sourceTree = "<group>"; };
+		944CC9E51C9015780029C723 /* NavigationMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationMainController.swift; sourceTree = "<group>"; };
+		944CC9E71C9017900029C723 /* CollectionViewMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewMainController.swift; sourceTree = "<group>"; };
+		944CC9E91C901A3B0029C723 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
+		FB86E772ADAEC3ACE051E6C6 /* Pods-NailApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NailApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-NailApp/Pods-NailApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +44,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC5BDAC2FF1CB07E9683E9B6 /* libPods-NailApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C72803630730FB79E45F1F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				46D1412DFEDE4F537A715391 /* libPods-NailApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		944B88051C8A8FD50042E911 = {
 			isa = PBXGroup;
 			children = (
 				944B88101C8A8FD60042E911 /* NailApp */,
 				944B880F1C8A8FD60042E911 /* Products */,
+				C3522BEEB4BBCE7030EC60D0 /* Pods */,
+				0C72803630730FB79E45F1F4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,14 +81,28 @@
 			isa = PBXGroup;
 			children = (
 				944B88111C8A8FD60042E911 /* AppDelegate.swift */,
+				944CC9E71C9017900029C723 /* CollectionViewMainController.swift */,
 				944B88131C8A8FD60042E911 /* FirstViewController.swift */,
+				944CC9E31C9014510029C723 /* HomeTabMainController.swift */,
+				944CC9E51C9015780029C723 /* NavigationMainController.swift */,
 				944B88151C8A8FD60042E911 /* SecondViewController.swift */,
 				944B88171C8A8FD60042E911 /* Main.storyboard */,
+				944CC9E91C901A3B0029C723 /* MyCollectionViewCell.swift */,
 				944B881A1C8A8FD60042E911 /* Assets.xcassets */,
 				944B881C1C8A8FD60042E911 /* LaunchScreen.storyboard */,
 				944B881F1C8A8FD60042E911 /* Info.plist */,
+				944CC9E21C9013610029C723 /* NailApp-Bridging-Header.h */,
 			);
 			path = NailApp;
+			sourceTree = "<group>";
+		};
+		C3522BEEB4BBCE7030EC60D0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				259AF81E475783C63C2EDB40 /* Pods-NailApp.debug.xcconfig */,
+				FB86E772ADAEC3ACE051E6C6 /* Pods-NailApp.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +112,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 944B88221C8A8FD60042E911 /* Build configuration list for PBXNativeTarget "NailApp" */;
 			buildPhases = (
+				0953BA94042B856F3DCEC422 /* Check Pods Manifest.lock */,
 				944B880A1C8A8FD60042E911 /* Sources */,
 				944B880B1C8A8FD60042E911 /* Frameworks */,
 				944B880C1C8A8FD60042E911 /* Resources */,
+				9B49803AF7DCF8C06B07BBD0 /* Embed Pods Frameworks */,
+				0B254D12995FDA07C69CE255 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -133,14 +174,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0953BA94042B856F3DCEC422 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		0B254D12995FDA07C69CE255 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NailApp/Pods-NailApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B49803AF7DCF8C06B07BBD0 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NailApp/Pods-NailApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		944B880A1C8A8FD60042E911 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				944CC9E61C9015780029C723 /* NavigationMainController.swift in Sources */,
+				944CC9EA1C901A3B0029C723 /* MyCollectionViewCell.swift in Sources */,
+				944CC9E81C9017900029C723 /* CollectionViewMainController.swift in Sources */,
 				944B88161C8A8FD60042E911 /* SecondViewController.swift in Sources */,
 				944B88121C8A8FD60042E911 /* AppDelegate.swift in Sources */,
 				944B88141C8A8FD60042E911 /* FirstViewController.swift in Sources */,
+				944CC9E41C9014510029C723 /* HomeTabMainController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,23 +342,27 @@
 		};
 		944B88231C8A8FD60042E911 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 259AF81E475783C63C2EDB40 /* Pods-NailApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NailApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.oshige.NailApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/NailApp-Bridging-Header.h";
 			};
 			name = Debug;
 		};
 		944B88241C8A8FD60042E911 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB86E772ADAEC3ACE051E6C6 /* Pods-NailApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NailApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.oshige.NailApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/NailApp-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -288,6 +385,7 @@
 				944B88241C8A8FD60042E911 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
