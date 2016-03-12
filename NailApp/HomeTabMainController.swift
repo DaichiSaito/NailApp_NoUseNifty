@@ -9,7 +9,19 @@
 import UIKit
 
 class HomeTabMainController: UIViewController, UIPageViewControllerDelegate {
-    
+
+    @IBAction func updateView(sender: AnyObject) {
+        loadView()
+        viewDidLoad()
+    }
+    @IBAction func uploadButton(sender: AnyObject) {
+        let chooseFromCameraInstanse: chooseFromCamera = chooseFromCamera()
+        self.addChildViewController(chooseFromCameraInstanse)
+//        self.view.addSubview(chooseFromCameraInstanse.view)
+        chooseFromCameraInstanse.uploadImages()
+//        loadView()
+//        viewDidLoad()
+    }
     var pageViewController: UIPageViewController?
     
     @IBOutlet weak var navigationSubView: UIView!
@@ -20,7 +32,13 @@ class HomeTabMainController: UIViewController, UIPageViewControllerDelegate {
         
         let navigationController:NavigationMainController = NavigationMainController(rootViewController: pageController)
         let CollectionViewMainController1 = self.storyboard!.instantiateViewControllerWithIdentifier( "collectionViewMain" )
+        print("frame")
+        print(CollectionViewMainController1.view.frame)
+        print(self.view.frame)
+        let rect:CGRect = CGRectMake(0, 0, 300, 300)
+        CollectionViewMainController1.view.frame = rect
         let CollectionViewMainController2 = self.storyboard!.instantiateViewControllerWithIdentifier( "collectionViewMain" )
+        CollectionViewMainController2.view.frame = self.view.frame
         navigationController.viewControllerArray = [CollectionViewMainController1,CollectionViewMainController2]
         
         self.addChildViewController(navigationController)

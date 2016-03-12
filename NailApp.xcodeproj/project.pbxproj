@@ -17,6 +17,10 @@
 		944CC9E61C9015780029C723 /* NavigationMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CC9E51C9015780029C723 /* NavigationMainController.swift */; };
 		944CC9E81C9017900029C723 /* CollectionViewMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CC9E71C9017900029C723 /* CollectionViewMainController.swift */; };
 		944CC9EA1C901A3B0029C723 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CC9E91C901A3B0029C723 /* MyCollectionViewCell.swift */; };
+		9476AFB61C903B4000A16B6B /* chooseFromCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9476AFB51C903B4000A16B6B /* chooseFromCamera.swift */; };
+		94C917B91C93A4280031FAE9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C917B81C93A4280031FAE9 /* DetailViewController.swift */; };
+		94C917BB1C93D4390031FAE9 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C917BA1C93D4390031FAE9 /* ModelController.swift */; };
+		94C917BD1C93D44C0031FAE9 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C917BC1C93D44C0031FAE9 /* DataViewController.swift */; };
 		BC5BDAC2FF1CB07E9683E9B6 /* libPods-NailApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D1412DFEDE4F537A715391 /* libPods-NailApp.a */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +40,10 @@
 		944CC9E51C9015780029C723 /* NavigationMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationMainController.swift; sourceTree = "<group>"; };
 		944CC9E71C9017900029C723 /* CollectionViewMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewMainController.swift; sourceTree = "<group>"; };
 		944CC9E91C901A3B0029C723 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
+		9476AFB51C903B4000A16B6B /* chooseFromCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chooseFromCamera.swift; sourceTree = "<group>"; };
+		94C917B81C93A4280031FAE9 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		94C917BA1C93D4390031FAE9 /* ModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
+		94C917BC1C93D44C0031FAE9 /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		FB86E772ADAEC3ACE051E6C6 /* Pods-NailApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NailApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-NailApp/Pods-NailApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +90,7 @@
 			children = (
 				944B88111C8A8FD60042E911 /* AppDelegate.swift */,
 				944CC9E71C9017900029C723 /* CollectionViewMainController.swift */,
+				9476AFB51C903B4000A16B6B /* chooseFromCamera.swift */,
 				944B88131C8A8FD60042E911 /* FirstViewController.swift */,
 				944CC9E31C9014510029C723 /* HomeTabMainController.swift */,
 				944CC9E51C9015780029C723 /* NavigationMainController.swift */,
@@ -92,6 +101,9 @@
 				944B881C1C8A8FD60042E911 /* LaunchScreen.storyboard */,
 				944B881F1C8A8FD60042E911 /* Info.plist */,
 				944CC9E21C9013610029C723 /* NailApp-Bridging-Header.h */,
+				94C917B81C93A4280031FAE9 /* DetailViewController.swift */,
+				94C917BA1C93D4390031FAE9 /* ModelController.swift */,
+				94C917BC1C93D44C0031FAE9 /* DataViewController.swift */,
 			);
 			path = NailApp;
 			sourceTree = "<group>";
@@ -227,6 +239,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94C917B91C93A4280031FAE9 /* DetailViewController.swift in Sources */,
+				94C917BB1C93D4390031FAE9 /* ModelController.swift in Sources */,
 				944CC9E61C9015780029C723 /* NavigationMainController.swift in Sources */,
 				944CC9EA1C901A3B0029C723 /* MyCollectionViewCell.swift in Sources */,
 				944CC9E81C9017900029C723 /* CollectionViewMainController.swift in Sources */,
@@ -234,6 +248,8 @@
 				944B88121C8A8FD60042E911 /* AppDelegate.swift in Sources */,
 				944B88141C8A8FD60042E911 /* FirstViewController.swift in Sources */,
 				944CC9E41C9014510029C723 /* HomeTabMainController.swift in Sources */,
+				9476AFB61C903B4000A16B6B /* chooseFromCamera.swift in Sources */,
+				94C917BD1C93D44C0031FAE9 /* DataViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

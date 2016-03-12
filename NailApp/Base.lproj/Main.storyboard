@@ -3,9 +3,10 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--First-->
+        <!--NailApp-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="HomeTabMainController" customModule="NailApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -21,13 +22,13 @@
                                 <rect key="frame" x="221" y="279" width="158" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by FirstViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-7J-77L">
                                 <rect key="frame" x="203" y="329" width="195" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4MQ-lS-xkE">
@@ -44,7 +45,18 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
-                    <navigationItem key="navigationItem" id="TA3-MX-kOp"/>
+                    <navigationItem key="navigationItem" title="NailApp" id="TA3-MX-kOp">
+                        <barButtonItem key="leftBarButtonItem" title="更新" id="FME-sR-FUY">
+                            <connections>
+                                <action selector="updateView:" destination="9pv-A4-QxB" id="blQ-hw-sdX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="投稿" id="Kex-7t-MZP">
+                            <connections>
+                                <action selector="uploadButton:" destination="9pv-A4-QxB" id="shn-aj-IJg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="navigationSubView" destination="4MQ-lS-xkE" id="Esv-Xy-8oP"/>
                     </connections>
@@ -56,7 +68,7 @@
         <!--Collection View Main Controller-->
         <scene sceneID="NqK-tU-IyM">
             <objects>
-                <viewController storyboardIdentifier="collectionViewMain" id="lnu-kr-4RI" customClass="CollectionViewMainController" customModule="NailApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="collectionViewMain" modalPresentationStyle="currentContext" id="lnu-kr-4RI" customClass="CollectionViewMainController" customModule="NailApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XPC-om-UTO"/>
                         <viewControllerLayoutGuide type="bottom" id="k38-Km-YRI"/>
@@ -66,8 +78,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5Cn-3h-Ugt">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="T3L-qa-JZ7">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="T3L-qa-JZ7">
                                     <size key="itemSize" width="106" height="106"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -89,22 +101,93 @@
                                         </view>
                                         <connections>
                                             <outlet property="image" destination="ld0-Pg-a91" id="GV2-za-mil"/>
+                                            <segue destination="2W0-jh-BS2" kind="show" id="A3i-4z-QNk"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="lnu-kr-4RI" id="MGx-8U-lVg"/>
                                     <outlet property="delegate" destination="lnu-kr-4RI" id="MgE-l8-4d0"/>
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.3676418729" green="1" blue="0.27572867709999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="dfy-WH-ucI"/>
+                    <connections>
+                        <outlet property="collectionView" destination="5Cn-3h-Ugt" id="Lb8-iF-7Gj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhM-u0-tqm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="946" y="-1094"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="gvZ-gp-4H0">
+            <objects>
+                <viewController id="2W0-jh-BS2" customClass="DetailViewController" customModule="NailApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cCZ-HK-lFh"/>
+                        <viewControllerLayoutGuide type="bottom" id="OBe-Mq-nH4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NKu-E5-B07">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDm-gm-5fZ">
+                                <rect key="frame" x="131" y="137" width="330" height="330"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nDm-gm-5fZ" firstAttribute="leading" secondItem="NKu-E5-B07" secondAttribute="leadingMargin" constant="100" id="P9s-ts-tVR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nDm-gm-5fZ" secondAttribute="trailing" constant="100" id="Yeb-HS-Pgc"/>
+                            <constraint firstItem="nDm-gm-5fZ" firstAttribute="top" secondItem="cCZ-HK-lFh" secondAttribute="bottom" constant="100" id="duu-2s-ucL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detailImage" destination="nDm-gm-5fZ" id="z8a-I6-IDd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ftr-lV-80n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1628" y="-1094"/>
+        </scene>
+        <!--Data View Controller-->
+        <scene sceneID="N0P-RF-vLK">
+            <objects>
+                <viewController storyboardIdentifier="DataViewController" id="yeF-VQ-guz" customClass="DataViewController" customModule="NailApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hDP-wI-XM4"/>
+                        <viewControllerLayoutGuide type="bottom" id="WXN-GZ-7Rj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mym-ju-0QM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPu-rg-uu0">
+                                <rect key="frame" x="279" y="28" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5bc-9d-PPH">
+                                <rect key="frame" x="98" y="167" width="403" height="329"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.68473019379276479" blue="0.016665469481699446" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="dataLabel" destination="CPu-rg-uu0" id="puB-wl-lra"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o5H-C8-mwU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2298" y="-1094"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
@@ -122,13 +205,13 @@
                                 <rect key="frame" x="195" y="279" width="210" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
                                 <rect key="frame" x="192" y="329" width="216" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

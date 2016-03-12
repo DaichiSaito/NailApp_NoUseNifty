@@ -20,15 +20,62 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
         query.orderByDescending("createDate")
         try! self.memoArray = query.findObjects()
         print("memoArray.countは" + String(self.memoArray.count))
+        
+        let refreshControl = UIRefreshControl()
+        //下に引っ張った時に、リフレッシュさせる関数を実行する。”：”を忘れがちなので注意。
+        refreshControl.addTarget(self, action: "guruguru:", forControlEvents: UIControlEvents.ValueChanged)
+        //UICollectionView上に、ロード中...を表示するための新しいビューを作る
+        self.collectionView?.addSubview(refreshControl)
+        
+//        let refreshControl = UIRefreshControl()
+//        refreshControl.addTarget(self, action: "startLoading:", forControlEvents: UIControlEvents.ValueChanged)
+//        collectionView?.addSubview(refreshControl)
+
     }
     
+    //リフレッシュさせる
+    func guruguru(sender:AnyObject) {
+        sender.beginRefreshing()
+        let query: NCMBQuery = NCMBQuery(className: "MemoClass")
+        query.orderByDescending("createDate")
+        try! self.memoArray = query.findObjects()
+        print("memoArray.countは" + String(self.memoArray.count))
+        collectionView!.reloadData()
+        sender.endRefreshing()
+    }
+    //MARK: RefreshControl
+    func startLoading(refreshControl : UIRefreshControl) {
+        NSThread.detachNewThreadSelector("wait:", toTarget: self, withObject: refreshControl)
+    }
+    func wait(refreshControl : UIRefreshControl) {
+        // 2 sec
+        sleep(2)
+        dispatch_async(dispatch_get_main_queue()) {
+            refreshControl.endRefreshing()
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    override func viewWillAppear(animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        print(self.view.bounds.size.width)
+//        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.bounds.size.width, self.view.frame.size.height)
+//        self.view.setTranslatesAutoresizingMaskIntoConstraints(true)
+
+//        self.view.frame = CGRectMake(0,0,414,100)
+//        //UIRefreshControllのインスタンスを生成する。
+//        let refreshControl = UIRefreshControl()
+//        //下に引っ張った時に、リフレッシュさせる関数を実行する。”：”を忘れがちなので注意。
+//        refreshControl.addTarget(self, action: "guruguru:", forControlEvents: UIControlEvents.ValueChanged)
+//        //UICollectionView上に、ロード中...を表示するための新しいビューを作る
+//        self.view.addSubview(refreshControl)
+        
+    }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return self.memoArray.count
         return self.memoArray.count
     }
     
@@ -53,14 +100,35 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        let width: CGFloat = self.view.frame.width / 3 - 2
+//        let width: CGFloat = self.view.frame.width / 3 - 2
+//        let width: CGFloat = self.view.frame.width / 3 - 2
+        let width: CGFloat = super.view.frame.width / 3 - 6
+        print(width)
         let height: CGFloat = width
         return CGSize(width: width, height: height) // The size of one cell
+        
+    }
+    //Cellがクリックされた時によばれます
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        print("選択しました: \(indexPath.row)")
         
     }
     
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+//        if let indexPath = self.collectionView?.indexPathsForSelectedItems {
+        let cell = sender as! UICollectionViewCell
+        let indexPath = self.collectionView!.indexPathForCell(cell)
+        let controller = segue.destinationViewController as! DetailViewController
+        controller.indexPath = indexPath!
+        controller.memoArray = self.memoArray
+//
+//        }
+        
     }
     
 }
