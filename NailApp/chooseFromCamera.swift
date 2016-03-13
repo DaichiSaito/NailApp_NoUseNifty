@@ -44,6 +44,7 @@ class chooseFromCamera: UIViewController, UIImagePickerControllerDelegate, UINav
             obj.setObject(targetFile.name, forKey: "filename")
             obj.setObject(800, forKey: "money")
             obj.setObject("comment!", forKey: "comment")
+            obj.setObject(false, forKey: "favFlg")
             obj.save(&saveError)
             
             //ファイルはバックグラウンド実行をする

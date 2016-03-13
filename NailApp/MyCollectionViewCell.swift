@@ -11,6 +11,7 @@ import UIKit
 class MyCollectionViewCell: UICollectionViewCell {
     @IBOutlet var image : UIImageView?
     
+    @IBOutlet weak var labelSample: UILabel!
     override init(frame: CGRect) {
         super.init(frame: frame)
     }

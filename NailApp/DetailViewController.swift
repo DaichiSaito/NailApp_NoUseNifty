@@ -13,6 +13,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate {
     var memoArray: NSArray = NSArray()
     var index: Int = 0
     var indexPath: NSIndexPath = NSIndexPath()
+    var imageArray: NSArray = NSArray()
     var pageViewController: UIPageViewController?
     
     @IBOutlet weak var detailImage: UIImageView!
@@ -40,7 +41,9 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate {
         self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
         self.pageViewController!.delegate = self
         
-        let startingViewController: DataViewController = self.modelController.viewControllerAtIndex(0, storyboard: self.storyboard!)!
+//        let startingViewController: DataViewController = self.modelController.viewControllerAtIndex(0, storyboard: self.storyboard!)!
+        let startingViewController: DataViewController = self.modelController.viewControllerAtIndex(indexPath.row, storyboard: self.storyboard!)!
+
         let viewControllers = [startingViewController]
         self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: {done in })
         
@@ -67,7 +70,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate {
         // Return the model controller object, creating it if necessary.
         // In more complex implementations, the model controller may be passed to the view controller.
         if _modelController == nil {
-            _modelController = ModelController()
+            _modelController = ModelController(_memoArray: memoArray, _indexPath: indexPath)
         }
         return _modelController!
     }
@@ -88,18 +91,18 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate {
         }
         
         // In landscape orientation: Set set the spine location to "mid" and the page view controller's view controllers array to contain two view controllers. If the current page is even, set it to contain the current and next view controllers; if it is odd, set the array to contain the previous and current view controllers.
-        let currentViewController = self.pageViewController!.viewControllers![0] as! DataViewController
-        var viewControllers: [UIViewController]
-        
-        let indexOfCurrentViewController = self.modelController.indexOfViewController(currentViewController)
-        if (indexOfCurrentViewController == 0) || (indexOfCurrentViewController % 2 == 0) {
-            let nextViewController = self.modelController.pageViewController(self.pageViewController!, viewControllerAfterViewController: currentViewController)
-            viewControllers = [currentViewController, nextViewController!]
-        } else {
-            let previousViewController = self.modelController.pageViewController(self.pageViewController!, viewControllerBeforeViewController: currentViewController)
-            viewControllers = [previousViewController!, currentViewController]
-        }
-        self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: {done in })
+//        let currentViewController = self.pageViewController!.viewControllers![0] as! DataViewController
+//        var viewControllers: [UIViewController]
+//        
+//        let indexOfCurrentViewController = self.modelController.indexOfViewController(currentViewController)
+//        if (indexOfCurrentViewController == 0) || (indexOfCurrentViewController % 2 == 0) {
+//            let nextViewController = self.modelController.pageViewController(self.pageViewController!, viewControllerAfterViewController: currentViewController)
+//            viewControllers = [currentViewController, nextViewController!]
+//        } else {
+//            let previousViewController = self.modelController.pageViewController(self.pageViewController!, viewControllerBeforeViewController: currentViewController)
+//            viewControllers = [previousViewController!, currentViewController]
+//        }
+//        self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: {done in })
         
         return .Mid
     }

@@ -11,7 +11,9 @@ import UIKit
 class DataViewController: UIViewController {
     
     @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var detailImage2: UIImageView!
     var dataObject: String = ""
+    var dataImage: UIImage?
     
     
     override func viewDidLoad() {
@@ -27,6 +29,7 @@ class DataViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.dataLabel!.text = dataObject
+//        self.detailImage2.image = dataImage
     }
     
     

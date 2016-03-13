@@ -21,24 +21,53 @@ There is no need to actually create view controllers for each page in advance --
 class ModelController: NSObject, UIPageViewControllerDataSource {
     
     var pageData: [String] = []
+//    var imageData: [UIImage] = []
+    var imageArray: NSArray = NSArray()
     
+    var indexImageArray: Int = 0
     
-    override init() {
+    var indexMemoArray: Int = 0
+    var memoArray: NSArray = NSArray()
+    
+    init(_memoArray: NSArray, _indexPath: NSIndexPath) {
         super.init()
         // Create the data model.
         let dateFormatter = NSDateFormatter()
         pageData = dateFormatter.monthSymbols
+//        imageArray = _imageArray
+        indexMemoArray = _indexPath.row
+        indexImageArray = _indexPath.row
+        memoArray = _memoArray
     }
     
     func viewControllerAtIndex(index: Int, storyboard: UIStoryboard) -> DataViewController? {
         // Return the data view controller for the given index.
-        if (self.pageData.count == 0) || (index >= self.pageData.count) {
+        if (self.pageData.count == 0) || (index >= self.memoArray.count) {
             return nil
         }
         
         // Create a new view controller and pass suitable data.
         let dataViewController = storyboard.instantiateViewControllerWithIdentifier("DataViewController") as! DataViewController
-        dataViewController.dataObject = self.pageData[index]
+//        dataViewController.dataObject = self.pageData[index]
+        
+        // ここに通信処理
+        let targetMemoData: AnyObject = self.memoArray[indexMemoArray]
+        //画像データの取得
+        let filename: String = (targetMemoData.objectForKey("filename") as? String)!
+        let fileData = NCMBFile.fileWithName(filename, data: nil) as! NCMBFile
+        
+        fileData.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError!) -> Void in
+            
+            if error != nil {
+                print("写真の取得失敗: \(error)")
+            } else {
+//                self.detailImage!.image = UIImage(data: imageData!)
+                dataViewController.detailImage2.image = UIImage(data: imageData!)
+            }
+        }
+
+        
+//        dataViewController.dataImage = self.imageArray[index] as! UIImage
         return dataViewController
     }
     
@@ -46,28 +75,33 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
         // Return the index of the given data view controller.
         // For simplicity, this implementation uses a static array of model objects and the view controller stores the model object; you can therefore use the model object to identify the index.
         return pageData.indexOf(viewController.dataObject) ?? NSNotFound
+//        return imageArray.objectAtIndex(viewController.dataImage) ?? NSNotFound
     }
     
     // MARK: - Page View Controller Data Source
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        var index = self.indexOfViewController(viewController as! DataViewController)
+//        var index = self.indexOfViewController(viewController as! DataViewController)
+        var index = self.indexMemoArray
         if (index == 0) || (index == NSNotFound) {
             return nil
         }
         
         index--
+        self.indexMemoArray--
         return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        var index = self.indexOfViewController(viewController as! DataViewController)
+//        var index = self.indexOfViewController(viewController as! DataViewController)
+        var index = self.indexMemoArray
         if index == NSNotFound {
             return nil
         }
         
         index++
-        if index == self.pageData.count {
+        self.indexMemoArray++
+        if index == self.imageArray.count {
             return nil
         }
         return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
