@@ -143,21 +143,8 @@
                     <view key="view" contentMode="scaleToFill" id="NKu-E5-B07">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDm-gm-5fZ">
-                                <rect key="frame" x="131" y="137" width="330" height="330"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="nDm-gm-5fZ" firstAttribute="leading" secondItem="NKu-E5-B07" secondAttribute="leadingMargin" constant="100" id="P9s-ts-tVR"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="nDm-gm-5fZ" secondAttribute="trailing" constant="100" id="Yeb-HS-Pgc"/>
-                            <constraint firstItem="nDm-gm-5fZ" firstAttribute="top" secondItem="cCZ-HK-lFh" secondAttribute="bottom" constant="100" id="duu-2s-ucL"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="detailImage" destination="nDm-gm-5fZ" id="z8a-I6-IDd"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ftr-lV-80n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -181,11 +168,15 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hzj-an-8f7">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hzj-an-8f7">
                                 <rect key="frame" x="180" y="78" width="240" height="250"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.68473019379276479" blue="0.016665469481699446" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="hzj-an-8f7" secondAttribute="trailing" constant="160" id="dEU-w5-rkc"/>
+                            <constraint firstItem="hzj-an-8f7" firstAttribute="leading" secondItem="mym-ju-0QM" secondAttribute="leadingMargin" constant="160" id="fFr-Dw-y2B"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="dataLabel" destination="CPu-rg-uu0" id="puB-wl-lra"/>

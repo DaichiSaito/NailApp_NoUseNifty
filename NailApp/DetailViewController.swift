@@ -10,6 +10,8 @@ import UIKit
 
 class DetailViewController: UIViewController, UIPageViewControllerDelegate {
     
+    
+    // prepareForSegueで事前に設定した値がちらほら
     var memoArray: NSArray = NSArray()
     var index: Int = 0
     var indexPath: NSIndexPath = NSIndexPath()
@@ -22,29 +24,16 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let targetMemoData: AnyObject = self.memoArray[indexPath.row]
-        //画像データの取得
-        let filename: String = (targetMemoData.objectForKey("filename") as? String)!
-        let fileData = NCMBFile.fileWithName(filename, data: nil) as! NCMBFile
-        
-        fileData.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError!) -> Void in
-            
-            if error != nil {
-                print("写真の取得失敗: \(error)")
-            } else {
-                self.detailImage!.image = UIImage(data: imageData!)
-            }
-        }
-        
         // Do any additional setup after loading the view, typically from a nib.
         // Configure the page view controller and add it as a child view controller.
         self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
         self.pageViewController!.delegate = self
-        
-//        let startingViewController: DataViewController = self.modelController.viewControllerAtIndex(0, storyboard: self.storyboard!)!
+        // 何番目のVCかをindexPath.rowで指定している。ここで前後のVCも指定してあげるとどうなるんだろ。
         let startingViewController: DataViewController = self.modelController.viewControllerAtIndex(indexPath.row, storyboard: self.storyboard!)!
-
+        // 配列なので複数いける。
         let viewControllers = [startingViewController]
+        // 2ページ分のVCを渡すことも可能らしい。
+        // http://maplesystems.co.jp/blog/all/programming/20307.html 参照
         self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: {done in })
         
         self.pageViewController!.dataSource = self.modelController
@@ -70,6 +59,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate {
         // Return the model controller object, creating it if necessary.
         // In more complex implementations, the model controller may be passed to the view controller.
         if _modelController == nil {
+            // memoArrayとindexPathを引数にinitを呼ぶ
             _modelController = ModelController(_memoArray: memoArray, _indexPath: indexPath)
         }
         return _modelController!

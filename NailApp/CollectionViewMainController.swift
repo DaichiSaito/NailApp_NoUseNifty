@@ -246,44 +246,49 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
         
         
     }
+    // FavDataを更新。（かわいいねの数）
     func updateFavData(targetMemoData: AnyObject) {
         print(targetMemoData)
+        // ファイル名
         let filename = targetMemoData.objectForKey("filename")!
+        // ファイルのobjectId
         let objectIdOfMemoClass = targetMemoData.objectForKey("objectId")!
-        print(filename)
 
         // ファイル名で検索
         let queryFavData: NCMBQuery = NCMBQuery(className: "FavData")
+        // ファイル名が一致するものを抽出
         queryFavData.whereKey("filename", equalTo: filename)
         queryFavData.findObjectsInBackgroundWithBlock({(NSArray items, NSError error) in
 
-            
             if error == nil {
                 print("登録件数：\(items.count)")
                 var saveError: NSError? = nil
+                // items.countは1か0しかない。
                 if items.count > 0 {
+                    // FavDataに保存するためのオブジェクト生成
                     let objFavData: NCMBObject = NCMBObject(className: "FavData")
+                    // objectId
                     let objectId: String = (items[0].objectForKey("objectId") as? String)!
+                    // favFlg
                     let favFlg: Bool = ((items[0].objectForKey("favFlg") as? Bool))!
+                    // プロパティ設定
                     objFavData.objectId = objectId
                     objFavData.fetchInBackgroundWithBlock({(NSError error) in
                             
                         if (error == nil) {
+                            // favFlgの反対を設定
                             objFavData.setObject(!favFlg, forKey: "favFlg")
+                            // 保存
                             objFavData.save(&saveError)
-                            
                         } else {
                             print("データ取得処理時にエラーが発生しました: \(error)")
                         }
                     })
-                    
-//                    var saveError: NSError? = nil
+                    // MemoClassのカワイイネの数も更新
                     let objMemoClass: NCMBObject = NCMBObject(className: "MemoClass")
                     objMemoClass.objectId = objectIdOfMemoClass as! String
                     objMemoClass.fetchInBackgroundWithBlock({(NSError error) in
-                        
                         if (error == nil) {
-                            
                             if (favFlg) {
                                 objMemoClass.incrementKey("money",byAmount: -1)
                             } else {
@@ -296,7 +301,7 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
                         }
                     })
 
-
+                // 初めてかわいいねを押す場合
                 } else {
                     let objFavData: NCMBObject = NCMBObject(className: "FavData")
                     objFavData.setObject(targetMemoData.objectForKey("filename"), forKey: "filename")
@@ -322,12 +327,6 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
             
             
         })
-//        // あれば更新なければ新規インサート
-//        var saveError: NSError? = nil
-//        let obj: NCMBObject = NCMBObject(className: "FavData")
-//        obj.setObject(targetMemoData.objectForKey("filename"), forKey: "filename")
-//        obj.setObject(true, forKey: "favFlg")
-//        obj.save(&saveError)
     }
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -335,15 +334,12 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-//        if let indexPath = self.collectionView?.indexPathsForSelectedItems {
         let cell = sender as! UICollectionViewCell
         let indexPath = self.collectionView!.indexPathForCell(cell)
         let controller = segue.destinationViewController as! DetailViewController
         controller.indexPath = indexPath!
         controller.memoArray = self.memoArray
-//        controller.imageArray = self.imageArray
-//
-//        }
+
         
     }
     

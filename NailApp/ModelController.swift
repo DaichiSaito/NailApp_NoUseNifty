@@ -23,32 +23,31 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
     var pageData: [String] = []
 //    var imageData: [UIImage] = []
     var imageArray: NSArray = NSArray()
-    
-    var indexImageArray: Int = 0
-    
     var indexMemoArray: Int = 0
     var memoArray: NSArray = NSArray()
     
+    // memoArrayとindexPathを引数に持つinit
     init(_memoArray: NSArray, _indexPath: NSIndexPath) {
         super.init()
         // Create the data model.
         let dateFormatter = NSDateFormatter()
+        // 年月。１２月まで。実際不要。
         pageData = dateFormatter.monthSymbols
-//        imageArray = _imageArray
+        // memoArrayのindex。前画面で選択したcellのindex。
         indexMemoArray = _indexPath.row
-        indexImageArray = _indexPath.row
+        // memoArrayの実態。JSON形式。
         memoArray = _memoArray
     }
     
     func viewControllerAtIndex(index: Int, storyboard: UIStoryboard) -> DataViewController? {
         // Return the data view controller for the given index.
+        // self.pageData.countは常に12。一番最初、indexには前画面で選択したcellのindexが入る。
         if (self.pageData.count == 0) || (index >= self.memoArray.count) {
             return nil
         }
         
         // Create a new view controller and pass suitable data.
         let dataViewController = storyboard.instantiateViewControllerWithIdentifier("DataViewController") as! DataViewController
-//        dataViewController.dataObject = self.pageData[index]
         
         // ここに通信処理
         let targetMemoData: AnyObject = self.memoArray[indexMemoArray]
@@ -61,13 +60,13 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
             if error != nil {
                 print("写真の取得失敗: \(error)")
             } else {
-//                self.detailImage!.image = UIImage(data: imageData!)
                 dataViewController.detailImage2.image = UIImage(data: imageData!)
             }
         }
 
         
 //        dataViewController.dataImage = self.imageArray[index] as! UIImage
+        // ここで二つのVCを返却すればいい感じで次の画像も取得してセットしておくことができるかも。
         return dataViewController
     }
     
@@ -82,29 +81,35 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
 //        var index = self.indexOfViewController(viewController as! DataViewController)
-        var index = self.indexMemoArray
-        if (index == 0) || (index == NSNotFound) {
+//        var index = self.indexMemoArray
+        self.indexMemoArray--
+        if (self.indexMemoArray == 0) || (self.indexMemoArray == NSNotFound) {
             return nil
         }
         
-        index--
-        self.indexMemoArray--
-        return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
+//        index--
+//        self.indexMemoArray--
+        return self.viewControllerAtIndex(self.indexMemoArray, storyboard: viewController.storyboard!)
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
 //        var index = self.indexOfViewController(viewController as! DataViewController)
-        var index = self.indexMemoArray
-        if index == NSNotFound {
+//        var index = self.indexMemoArray
+        if self.indexMemoArray == NSNotFound {
             return nil
         }
         
-        index++
+//        index++
         self.indexMemoArray++
-        if index == self.imageArray.count {
+        if self.indexMemoArray == self.memoArray.count {
             return nil
         }
-        return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
+        return self.viewControllerAtIndex(self.indexMemoArray, storyboard: viewController.storyboard!)
+    }
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        var dvc = pageViewController.viewControllers![0] as! DataViewController
+        print(dvc)
+        
     }
     
 }
