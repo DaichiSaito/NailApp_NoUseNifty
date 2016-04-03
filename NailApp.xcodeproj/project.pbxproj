@@ -18,6 +18,8 @@
 		944CC9E81C9017900029C723 /* CollectionViewMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CC9E71C9017900029C723 /* CollectionViewMainController.swift */; };
 		944CC9EA1C901A3B0029C723 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CC9E91C901A3B0029C723 /* MyCollectionViewCell.swift */; };
 		9476AFB61C903B4000A16B6B /* chooseFromCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9476AFB51C903B4000A16B6B /* chooseFromCamera.swift */; };
+		94C5AE9D1CB0B42C0040DA38 /* transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 94C5AE9C1CB0B42C0040DA38 /* transparent.png */; };
+		94C5AE9F1CB11B3D0040DA38 /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C5AE9E1CB11B3D0040DA38 /* Macro.swift */; };
 		94C917B91C93A4280031FAE9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C917B81C93A4280031FAE9 /* DetailViewController.swift */; };
 		94C917BB1C93D4390031FAE9 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C917BA1C93D4390031FAE9 /* ModelController.swift */; };
 		94C917BD1C93D44C0031FAE9 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C917BC1C93D44C0031FAE9 /* DataViewController.swift */; };
@@ -41,6 +43,8 @@
 		944CC9E71C9017900029C723 /* CollectionViewMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewMainController.swift; sourceTree = "<group>"; };
 		944CC9E91C901A3B0029C723 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		9476AFB51C903B4000A16B6B /* chooseFromCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chooseFromCamera.swift; sourceTree = "<group>"; };
+		94C5AE9C1CB0B42C0040DA38 /* transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = transparent.png; path = ../../AFNetworkingTest/AFNetworkingTest/transparent.png; sourceTree = "<group>"; };
+		94C5AE9E1CB11B3D0040DA38 /* Macro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
 		94C917B81C93A4280031FAE9 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		94C917BA1C93D4390031FAE9 /* ModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
 		94C917BC1C93D44C0031FAE9 /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 		944B88101C8A8FD60042E911 /* NailApp */ = {
 			isa = PBXGroup;
 			children = (
+				94C5AE9C1CB0B42C0040DA38 /* transparent.png */,
 				944B88111C8A8FD60042E911 /* AppDelegate.swift */,
 				944CC9E71C9017900029C723 /* CollectionViewMainController.swift */,
 				9476AFB51C903B4000A16B6B /* chooseFromCamera.swift */,
@@ -104,6 +109,7 @@
 				94C917B81C93A4280031FAE9 /* DetailViewController.swift */,
 				94C917BA1C93D4390031FAE9 /* ModelController.swift */,
 				94C917BC1C93D44C0031FAE9 /* DataViewController.swift */,
+				94C5AE9E1CB11B3D0040DA38 /* Macro.swift */,
 			);
 			path = NailApp;
 			sourceTree = "<group>";
@@ -178,6 +184,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94C5AE9D1CB0B42C0040DA38 /* transparent.png in Resources */,
 				944B881E1C8A8FD60042E911 /* LaunchScreen.storyboard in Resources */,
 				944B881B1C8A8FD60042E911 /* Assets.xcassets in Resources */,
 				944B88191C8A8FD60042E911 /* Main.storyboard in Resources */,
@@ -243,6 +250,7 @@
 				94C917BB1C93D4390031FAE9 /* ModelController.swift in Sources */,
 				944CC9E61C9015780029C723 /* NavigationMainController.swift in Sources */,
 				944CC9EA1C901A3B0029C723 /* MyCollectionViewCell.swift in Sources */,
+				94C5AE9F1CB11B3D0040DA38 /* Macro.swift in Sources */,
 				944CC9E81C9017900029C723 /* CollectionViewMainController.swift in Sources */,
 				944B88161C8A8FD60042E911 /* SecondViewController.swift in Sources */,
 				944B88121C8A8FD60042E911 /* AppDelegate.swift in Sources */,

@@ -17,6 +17,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate {
     var indexPath: NSIndexPath = NSIndexPath()
     var imageArray: NSArray = NSArray()
     var pageViewController: UIPageViewController?
+    var imageInfo = []
     
     @IBOutlet weak var detailImage: UIImageView!
     
@@ -60,7 +61,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate {
         // In more complex implementations, the model controller may be passed to the view controller.
         if _modelController == nil {
             // memoArrayとindexPathを引数にinitを呼ぶ
-            _modelController = ModelController(_memoArray: memoArray, _indexPath: indexPath)
+            _modelController = ModelController(_memoArray: imageInfo, _indexPath: indexPath)
         }
         return _modelController!
     }
