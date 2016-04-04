@@ -10,8 +10,7 @@ import UIKit
 
 class DataViewController: UIViewController {
     
-    @IBOutlet weak var dataLabel: UILabel!
-    
+    @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var detailImage2: UIImageView!
     var dataObject: String = ""
     var dataImage: UIImage?
@@ -39,12 +38,43 @@ class DataViewController: UIViewController {
         self.detailImage2.setImageWithURL(url, placeholderImage: placeholder)
         self.detailImage2.frame = CGRectZero
         if (self.detailImage2.image != nil) {
-            self.detailImage2.translatesAutoresizingMaskIntoConstraints = true
+//            self.detailImage2.translatesAutoresizingMaskIntoConstraints = true
+//            self.contentView.autoresizingMask = autoresizingMask;
             let imageHeight = self.detailImage2.image!.size.height*screenWidth/self.detailImage2.image!.size.width
             self.detailImage2.frame = CGRectMake(0, 0, screenWidth, imageHeight)
         }
 //        self.dataLabel!.text = dataObject
 //        self.detailImage2.image = dataImage
+        
+//        //UIImageに画像の名前を指定します
+//        let img1 = UIImage(named:"img1.jpg");
+//        let img2 = UIImage(named:"img2.jpg");
+//        let img3 = UIImage(named:"img3.jpg");
+//        //UIImageViewにUIIimageを追加
+//        let imageView1 = UIImageView(image:img1)
+//        let imageView2 = UIImageView(image:img2)
+//        let imageView3 = UIImageView(image:img3)
+//        
+//        scrollView.frame = CGRectMake(0, 0, 240, 240)
+        
+        //全体のサイズ
+        scrollView.contentSize = CGSizeMake(screenWidth, 1200)  //横幅は画面に合わせ、縦幅は1200とする。
+        
+        //UIImageViewのサイズと位置を決めます
+//        imageView1.frame = CGRectMake(0, 0, 240, 240)
+//        imageView2.frame = CGRectMake(240, 0, 240, 240)
+//        imageView3.frame = CGRectMake(480, 0, 240, 240)
+        //UIImageViewのサイズと位置を決めます
+//        imageView1.frame = CGRectMake(0, 0, 240, 240)
+//        imageView2.frame = CGRectMake(0, 240, 240, 240)  //変更箇所
+//        imageView3.frame = CGRectMake(0, 480, 240, 240)  //変更箇所
+//        
+//        //UIImageViewをScrollViewに追加します
+//        scrollView.addSubview(imageView1)
+//        scrollView.addSubview(imageView2)
+//        scrollView.addSubview(imageView3)
+        
+        
     }
     
     

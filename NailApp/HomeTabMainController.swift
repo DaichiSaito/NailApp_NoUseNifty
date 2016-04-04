@@ -19,13 +19,27 @@ class HomeTabMainController: UIViewController, UIPageViewControllerDelegate {
         loadView()
         viewDidLoad()
     }
+    // 投稿ボタン押下時処理
     @IBAction func uploadButton(sender: AnyObject) {
-        let chooseFromCameraInstanse: chooseFromCamera = chooseFromCamera()
-        self.addChildViewController(chooseFromCameraInstanse)
-//        self.view.addSubview(chooseFromCameraInstanse.view)
-        chooseFromCameraInstanse.uploadImages()
-//        loadView()
-//        viewDidLoad()
+        // ユーザー情報取得
+        let carrentUser = NCMBUser.currentUser()
+        if(carrentUser == nil) {
+            // 未ログイン時の処理
+            let alertController = UIAlertController(title: "Sorry!", message: "会員専用です。ログインして。", preferredStyle: .Alert)
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            return
+        } else {
+            // ログイン時は後続の処理へ進む。
+            let chooseFromCameraInstanse: chooseFromCamera = chooseFromCamera()
+            self.addChildViewController(chooseFromCameraInstanse)
+            self.view.addSubview(chooseFromCameraInstanse.view)
+            chooseFromCameraInstanse.uploadImages()
+        }
+        
     }
     var pageViewController: UIPageViewController?
     

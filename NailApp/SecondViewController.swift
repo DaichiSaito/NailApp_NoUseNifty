@@ -13,6 +13,9 @@ class SecondViewController: UIViewController {
     
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var customerId: UITextField!
+    @IBAction func logout(sender: AnyObject) {
+        NCMBUser.logOut()
+    }
     @IBAction func login(sender: AnyObject) {
         
         

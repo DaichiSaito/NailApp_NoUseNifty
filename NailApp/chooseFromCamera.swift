@@ -10,6 +10,10 @@ import UIKit
 class chooseFromCamera: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var imageForUpload = UIImageView()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+    }
     func uploadImages() {
         
         let photoLibrary = UIImagePickerControllerSourceType.PhotoLibrary
@@ -101,7 +105,7 @@ class chooseFromCamera: UIViewController, UIImagePickerControllerDelegate, UINav
     }
     
     //画像のアップロード処理
-    func myImageUploadRequest(){
+    func myImageUploadRequest() {
         //myUrlには自分で用意したphpファイルのアドレスを入れる
         let myUrl = NSURL(string:"http://test.localhost/NailApp_NoUseNifty/uploadToFileServer.php")
         //        let myUrl = NSURL(string:"http://dsh4k2h4k2.esy.es/uploadTest4.php")
@@ -152,9 +156,11 @@ class chooseFromCamera: UIViewController, UIImagePickerControllerDelegate, UINav
         objImage.save(&saveError)
         
     }
+    
     func generateBoundaryString() -> String {
         return "Boundary-\(NSUUID().UUIDString)"
     }
+    
     func createBodyWithParameters(parameters: [String: String]?, filePathKey: String?, imageDataKey: NSData, boundary: String) -> NSData {
         var body = NSMutableData()
         if parameters != nil {
@@ -175,7 +181,4 @@ class chooseFromCamera: UIViewController, UIImagePickerControllerDelegate, UINav
         body.appendString("--\(boundary)--\r\n")
         return body
     }
-
-
-    
 }
