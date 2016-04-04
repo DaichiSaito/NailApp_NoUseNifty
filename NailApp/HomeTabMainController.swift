@@ -38,6 +38,8 @@ class HomeTabMainController: UIViewController, UIPageViewControllerDelegate {
             self.addChildViewController(chooseFromCameraInstanse)
             self.view.addSubview(chooseFromCameraInstanse.view)
             chooseFromCameraInstanse.uploadImages()
+//            chooseFromCameraInstanse.removeFromParentViewController()
+//            chooseFromCameraInstanse.view.removeFromSuperview()
         }
         
     }

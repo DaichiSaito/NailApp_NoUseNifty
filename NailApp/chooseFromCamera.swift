@@ -153,8 +153,21 @@ class chooseFromCamera: UIViewController, UIImagePickerControllerDelegate, UINav
         let objImage: NCMBObject = NCMBObject(className: "image")
         objImage.setObject(customerId!, forKey: "customerId")
         objImage.setObject("http://test.localhost/NailApp_NoUseNifty/images/" + String(time) + ".jpg", forKey: "imagePath")
-        objImage.save(&saveError)
-        
+//        objImage.save(&saveError)
+        objImage.saveInBackgroundWithBlock { (error: NSError?) -> Void in
+            if let e = error {
+                // 端末情報の登録が失敗した場合の処理
+                print(e.description)
+                if (e.code == 409001){
+                    // 失敗した原因がdeviceTokenの重複だった場合
+//                    self.updateExistInstallation(installation)
+                } else {
+                    // deviceTokenの重複以外のエラーが返ってきた場合
+                }
+            }
+            self.removeFromParentViewController()
+            self.view.removeFromSuperview()
+        }
     }
     
     func generateBoundaryString() -> String {
