@@ -12,6 +12,8 @@ class DataViewController: UIViewController {
     
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var detailImage2: UIImageView!
+//    @IBOutlet weak var nailist: UILabel!
+    @IBOutlet weak var nailistBtn: UIButton!
     var dataObject: String = ""
     var dataImage: UIImage?
 //    var imageInfo: NSDictionary = [:]
@@ -73,6 +75,22 @@ class DataViewController: UIViewController {
 //        scrollView.addSubview(imageView1)
 //        scrollView.addSubview(imageView2)
 //        scrollView.addSubview(imageView3)
+        
+//        self.nailist.text = self.imageInfo!.objectForKey("customerId") as? String!
+        self.nailistBtn.setTitle(self.imageInfo!.objectForKey("customerId") as? String!, forState: .Normal)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+//        let cell = sender as! UICollectionViewCell
+//        let indexPath = self.collectionView!.indexPathForCell(cell)
+//        let controller = segue.destinationViewController as! DetailViewController
+//        controller.indexPath = indexPath!
+//        controller.imageInfo = self.imageInfo
+        let controller = segue.destinationViewController as! DetailUserController
+//        controller.customerId = self.imageInfo?.objectForKey("customerId") as! String
+        controller.tmpCustomerId = self.imageInfo?.objectForKey("customerId") as? String
+        controller.tmpUserName = self.imageInfo?.objectForKey("customerId") as? String
         
         
     }

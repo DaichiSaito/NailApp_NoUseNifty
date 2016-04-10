@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9439561E1CB90E60001FB085 /* DetailUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9439561D1CB90E60001FB085 /* DetailUserController.swift */; };
 		944B88121C8A8FD60042E911 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944B88111C8A8FD60042E911 /* AppDelegate.swift */; };
 		944B88141C8A8FD60042E911 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944B88131C8A8FD60042E911 /* FirstViewController.swift */; };
 		944B88161C8A8FD60042E911 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944B88151C8A8FD60042E911 /* SecondViewController.swift */; };
@@ -21,6 +22,7 @@
 		949C8EA51CB2B7EA00F386DA /* img3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 949C8EA41CB2B7EA00F386DA /* img3.jpg */; };
 		949C8EA71CB2B80C00F386DA /* img2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 949C8EA61CB2B80C00F386DA /* img2.jpg */; };
 		949C8EA91CB2B82A00F386DA /* img1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 949C8EA81CB2B82A00F386DA /* img1.jpg */; };
+		94B96E011CBA06980043F88B /* ownProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B96E001CBA06980043F88B /* ownProfileViewController.swift */; };
 		94C5AE9D1CB0B42C0040DA38 /* transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 94C5AE9C1CB0B42C0040DA38 /* transparent.png */; };
 		94C5AE9F1CB11B3D0040DA38 /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C5AE9E1CB11B3D0040DA38 /* Macro.swift */; };
 		94C917B91C93A4280031FAE9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C917B81C93A4280031FAE9 /* DetailViewController.swift */; };
@@ -32,6 +34,7 @@
 /* Begin PBXFileReference section */
 		259AF81E475783C63C2EDB40 /* Pods-NailApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NailApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NailApp/Pods-NailApp.debug.xcconfig"; sourceTree = "<group>"; };
 		46D1412DFEDE4F537A715391 /* libPods-NailApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NailApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9439561D1CB90E60001FB085 /* DetailUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailUserController.swift; sourceTree = "<group>"; };
 		944B880E1C8A8FD60042E911 /* NailApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NailApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		944B88111C8A8FD60042E911 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		944B88131C8A8FD60042E911 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		949C8EA41CB2B7EA00F386DA /* img3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = img3.jpg; path = "../../../Pictures/写真ライブラリ.photoslibrary/Masters/2016/03/16/20160316-220804/img3.jpg"; sourceTree = "<group>"; };
 		949C8EA61CB2B80C00F386DA /* img2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = img2.jpg; path = "../../../Pictures/写真ライブラリ.photoslibrary/Masters/2016/03/26/20160326-104947/img2.jpg"; sourceTree = "<group>"; };
 		949C8EA81CB2B82A00F386DA /* img1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = img1.jpg; path = "../../../Pictures/写真ライブラリ.photoslibrary/Masters/2016/01/03/20160103-054329/img1.jpg"; sourceTree = "<group>"; };
+		94B96E001CBA06980043F88B /* ownProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ownProfileViewController.swift; sourceTree = "<group>"; };
 		94C5AE9C1CB0B42C0040DA38 /* transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = transparent.png; path = ../../AFNetworkingTest/AFNetworkingTest/transparent.png; sourceTree = "<group>"; };
 		94C5AE9E1CB11B3D0040DA38 /* Macro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
 		94C917B81C93A4280031FAE9 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 				944B88111C8A8FD60042E911 /* AppDelegate.swift */,
 				944CC9E71C9017900029C723 /* CollectionViewMainController.swift */,
 				9476AFB51C903B4000A16B6B /* chooseFromCamera.swift */,
+				9439561D1CB90E60001FB085 /* DetailUserController.swift */,
 				944B88131C8A8FD60042E911 /* FirstViewController.swift */,
 				944CC9E31C9014510029C723 /* HomeTabMainController.swift */,
 				944CC9E51C9015780029C723 /* NavigationMainController.swift */,
@@ -119,6 +124,7 @@
 				94C917BA1C93D4390031FAE9 /* ModelController.swift */,
 				94C917BC1C93D44C0031FAE9 /* DataViewController.swift */,
 				94C5AE9E1CB11B3D0040DA38 /* Macro.swift */,
+				94B96E001CBA06980043F88B /* ownProfileViewController.swift */,
 			);
 			path = NailApp;
 			sourceTree = "<group>";
@@ -261,6 +267,7 @@
 				94C917B91C93A4280031FAE9 /* DetailViewController.swift in Sources */,
 				94C917BB1C93D4390031FAE9 /* ModelController.swift in Sources */,
 				944CC9E61C9015780029C723 /* NavigationMainController.swift in Sources */,
+				94B96E011CBA06980043F88B /* ownProfileViewController.swift in Sources */,
 				944CC9EA1C901A3B0029C723 /* MyCollectionViewCell.swift in Sources */,
 				94C5AE9F1CB11B3D0040DA38 /* Macro.swift in Sources */,
 				944CC9E81C9017900029C723 /* CollectionViewMainController.swift in Sources */,
@@ -268,6 +275,7 @@
 				944B88121C8A8FD60042E911 /* AppDelegate.swift in Sources */,
 				944B88141C8A8FD60042E911 /* FirstViewController.swift in Sources */,
 				944CC9E41C9014510029C723 /* HomeTabMainController.swift in Sources */,
+				9439561E1CB90E60001FB085 /* DetailUserController.swift in Sources */,
 				9476AFB61C903B4000A16B6B /* chooseFromCamera.swift in Sources */,
 				94C917BD1C93D44C0031FAE9 /* DataViewController.swift in Sources */,
 			);

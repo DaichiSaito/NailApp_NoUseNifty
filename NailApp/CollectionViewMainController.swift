@@ -16,6 +16,7 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
     var imageArray: NSMutableArray = NSMutableArray()
     var favDataArray: NSArray = NSArray()
     var imageInfo = [];
+    var customerId: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -120,6 +121,12 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
          */
         
         let query: NCMBQuery = NCMBQuery(className: "image")
+        if(customerId == nil) {
+            
+        } else {
+            query.whereKey("customerId", equalTo: customerId!)
+            
+        }
         query.orderByDescending("createDate")
         query.findObjectsInBackgroundWithBlock({(objects, error) in
             

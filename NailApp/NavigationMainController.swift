@@ -62,6 +62,8 @@ class NavigationMainController: UINavigationController,UIPageViewControllerDeleg
         self.navigationBar.translucent = false
         
         // Do any additional setup after loading the view.
+//        self.setupPageViewController()
+//        self.setupSegmentButtons()
     }
     
     override func didReceiveMemoryWarning() {
@@ -118,6 +120,7 @@ class NavigationMainController: UINavigationController,UIPageViewControllerDeleg
     //%%% generic setup stuff for a pageview controller.  Sets up the scrolling style and delegate for the controller
     func setupPageViewController() {
         pageController = self.topViewController as! UIPageViewController
+//        pageController = self.parentViewController as! UIPageViewController
         pageController.delegate = self
         pageController.dataSource = self
         pageController.setViewControllers([viewControllerArray[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
