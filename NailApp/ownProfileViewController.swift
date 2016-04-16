@@ -14,12 +14,13 @@ class ownProfileViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("test")
-        performSegueWithIdentifier("profileSegue",sender: self)
+//        performSegueWithIdentifier("profileSegue",sender: self)
     }
     override func viewWillAppear(animated: Bool) {
         print("viewWillAppear_ownProfileViewController")
 //        self.setupPageViewController()
 //        self.setupSegmentButtons()
+        
     }
     
     override func didReceiveMemoryWarning() {

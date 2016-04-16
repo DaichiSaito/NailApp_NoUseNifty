@@ -23,6 +23,10 @@
 		949C8EA71CB2B80C00F386DA /* img2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 949C8EA61CB2B80C00F386DA /* img2.jpg */; };
 		949C8EA91CB2B82A00F386DA /* img1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 949C8EA81CB2B82A00F386DA /* img1.jpg */; };
 		94B96E011CBA06980043F88B /* ownProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B96E001CBA06980043F88B /* ownProfileViewController.swift */; };
+		94B96E031CBB0A3E0043F88B /* settingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B96E021CBB0A3E0043F88B /* settingViewController.swift */; };
+		94B96E051CBB13EC0043F88B /* uploadProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B96E041CBB13EC0043F88B /* uploadProfileViewController.swift */; };
+		94B96E071CC0722F0043F88B /* heart_like.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B96E061CC0722F0043F88B /* heart_like.png */; };
+		94B96E091CC072430043F88B /* heart_unlike.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B96E081CC072430043F88B /* heart_unlike.png */; };
 		94C5AE9D1CB0B42C0040DA38 /* transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 94C5AE9C1CB0B42C0040DA38 /* transparent.png */; };
 		94C5AE9F1CB11B3D0040DA38 /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C5AE9E1CB11B3D0040DA38 /* Macro.swift */; };
 		94C917B91C93A4280031FAE9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C917B81C93A4280031FAE9 /* DetailViewController.swift */; };
@@ -53,6 +57,10 @@
 		949C8EA61CB2B80C00F386DA /* img2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = img2.jpg; path = "../../../Pictures/写真ライブラリ.photoslibrary/Masters/2016/03/26/20160326-104947/img2.jpg"; sourceTree = "<group>"; };
 		949C8EA81CB2B82A00F386DA /* img1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = img1.jpg; path = "../../../Pictures/写真ライブラリ.photoslibrary/Masters/2016/01/03/20160103-054329/img1.jpg"; sourceTree = "<group>"; };
 		94B96E001CBA06980043F88B /* ownProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ownProfileViewController.swift; sourceTree = "<group>"; };
+		94B96E021CBB0A3E0043F88B /* settingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingViewController.swift; sourceTree = "<group>"; };
+		94B96E041CBB13EC0043F88B /* uploadProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = uploadProfileViewController.swift; sourceTree = "<group>"; };
+		94B96E061CC0722F0043F88B /* heart_like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_like.png; path = ../../../Downloads/heart_like.png; sourceTree = "<group>"; };
+		94B96E081CC072430043F88B /* heart_unlike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_unlike.png; path = ../../../Downloads/heart_unlike.png; sourceTree = "<group>"; };
 		94C5AE9C1CB0B42C0040DA38 /* transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = transparent.png; path = ../../AFNetworkingTest/AFNetworkingTest/transparent.png; sourceTree = "<group>"; };
 		94C5AE9E1CB11B3D0040DA38 /* Macro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
 		94C917B81C93A4280031FAE9 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +110,8 @@
 		944B88101C8A8FD60042E911 /* NailApp */ = {
 			isa = PBXGroup;
 			children = (
+				94B96E081CC072430043F88B /* heart_unlike.png */,
+				94B96E061CC0722F0043F88B /* heart_like.png */,
 				949C8EA81CB2B82A00F386DA /* img1.jpg */,
 				949C8EA61CB2B80C00F386DA /* img2.jpg */,
 				949C8EA41CB2B7EA00F386DA /* img3.jpg */,
@@ -125,6 +135,8 @@
 				94C917BC1C93D44C0031FAE9 /* DataViewController.swift */,
 				94C5AE9E1CB11B3D0040DA38 /* Macro.swift */,
 				94B96E001CBA06980043F88B /* ownProfileViewController.swift */,
+				94B96E021CBB0A3E0043F88B /* settingViewController.swift */,
+				94B96E041CBB13EC0043F88B /* uploadProfileViewController.swift */,
 			);
 			path = NailApp;
 			sourceTree = "<group>";
@@ -200,8 +212,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				94C5AE9D1CB0B42C0040DA38 /* transparent.png in Resources */,
+				94B96E071CC0722F0043F88B /* heart_like.png in Resources */,
 				949C8EA71CB2B80C00F386DA /* img2.jpg in Resources */,
 				949C8EA91CB2B82A00F386DA /* img1.jpg in Resources */,
+				94B96E091CC072430043F88B /* heart_unlike.png in Resources */,
 				949C8EA51CB2B7EA00F386DA /* img3.jpg in Resources */,
 				944B881E1C8A8FD60042E911 /* LaunchScreen.storyboard in Resources */,
 				944B881B1C8A8FD60042E911 /* Assets.xcassets in Resources */,
@@ -266,6 +280,8 @@
 			files = (
 				94C917B91C93A4280031FAE9 /* DetailViewController.swift in Sources */,
 				94C917BB1C93D4390031FAE9 /* ModelController.swift in Sources */,
+				94B96E031CBB0A3E0043F88B /* settingViewController.swift in Sources */,
+				94B96E051CBB13EC0043F88B /* uploadProfileViewController.swift in Sources */,
 				944CC9E61C9015780029C723 /* NavigationMainController.swift in Sources */,
 				94B96E011CBA06980043F88B /* ownProfileViewController.swift in Sources */,
 				944CC9EA1C901A3B0029C723 /* MyCollectionViewCell.swift in Sources */,

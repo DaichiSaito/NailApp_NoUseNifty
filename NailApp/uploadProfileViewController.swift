@@ -7,12 +7,15 @@
 //
 
 import UIKit
-class chooseFromCamera: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class uploadProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var imageForUpload = UIImageView()
     
+    @IBAction func uploadImageButton(sender: AnyObject) {
+        uploadImages()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     func uploadImages() {
         
@@ -38,55 +41,6 @@ class chooseFromCamera: UIViewController, UIImagePickerControllerDelegate, UINav
         }
         picker.dismissViewControllerAnimated(true, completion: nil)
         
-//        if info[UIImagePickerControllerOriginalImage] != nil {
-//            let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-//            var imageForUpload = UIImageView()
-//            //iamgeForUploadというUIImageを用意しておいてそこに一旦預ける
-//            imageForUpload.image = image
-//            // 画像をリサイズしてUIImageViewにセット
-//            var resizeImage = resize(image, width: 480, height: 320)
-//            imageForUpload.image = resizeImage
-////            imageView.image = resizeImage
-////            self.message?.hidden = true
-//            //保存対象の画像ファイルを作成する
-//            let imageData: NSData = UIImagePNGRepresentation(resizeImage)!
-//            let targetFile = NCMBFile.fileWithData(imageData) as! NCMBFile
-//            //新規データを1件登録する
-//            var saveError: NSError? = nil
-//            let obj: NCMBObject = NCMBObject(className: "MemoClass")
-//            obj.setObject("title!", forKey: "title")
-//            obj.setObject(targetFile.name, forKey: "filename")
-//            obj.setObject(800, forKey: "money")
-//            obj.setObject("comment!", forKey: "comment")
-//            obj.setObject(false, forKey: "favFlg")
-//            obj.save(&saveError)
-//            
-//            //ファイルはバックグラウンド実行をする
-//            targetFile.saveInBackgroundWithBlock({ (error: NSError!) -> Void in
-//                
-//                if error == nil {
-//                    print("画像データ保存完了: \(targetFile.name)")
-//                } else {
-//                    print("アップロード中にエラーが発生しました: \(error)")
-//                }
-//                
-//                }, progressBlock: { (percentDone: Int32) -> Void in
-//                    
-//                    // 進捗状況を取得します。保存完了まで何度も呼ばれます
-//                    print("進捗状況: \(percentDone)% アップロード済み")
-//            })
-//            
-//            if saveError == nil {
-//                print("success save data.")
-//            } else {
-//                print("failure save data. \(saveError)")
-//            }
-//        }
-//
-//            //            self.myImageUploadRequest()
-//        
-//        picker.dismissViewControllerAnimated(true, completion: nil)
-        
     }
     
     // 画像をリサイズ
@@ -107,7 +61,7 @@ class chooseFromCamera: UIViewController, UIImagePickerControllerDelegate, UINav
     //画像のアップロード処理
     func myImageUploadRequest() {
         //myUrlには自分で用意したphpファイルのアドレスを入れる
-        let myUrl = NSURL(string:"http://test.localhost/NailApp_NoUseNifty/uploadToFileServer.php")
+        let myUrl = NSURL(string:"http://test.localhost/NailApp_NoUseNifty/uploadProfileImageToFileServer.php")
         //        let myUrl = NSURL(string:"http://dsh4k2h4k2.esy.es/uploadTest4.php")
         let request = NSMutableURLRequest(URL:myUrl!)
         request.HTTPMethod = "POST"
@@ -125,7 +79,7 @@ class chooseFromCamera: UIViewController, UIImagePickerControllerDelegate, UINav
         ]
         let boundary = generateBoundaryString()
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let imageData = UIImageJPEGRepresentation(self.imageForUpload.image!, 1)
         if(imageData==nil) { return; }
         request.HTTPBody = createBodyWithParameters(param, filePathKey: "file", imageDataKey: imageData!, boundary: boundary)
@@ -143,9 +97,6 @@ class chooseFromCamera: UIViewController, UIImagePickerControllerDelegate, UINav
             print("****** response data = \(responseString!)")
             dispatch_async(dispatch_get_main_queue(),{
                 //アップロード完了
-                // これかかないとアップロード後画面が固まる。
-                self.removeFromParentViewController()
-                self.view.removeFromSuperview()
             });
         }
         task.resume()
@@ -153,23 +104,23 @@ class chooseFromCamera: UIViewController, UIImagePickerControllerDelegate, UINav
         // niftyにもあげないと
         // imageコレクションも更新
         var saveError: NSError? = nil
-        let objImage: NCMBObject = NCMBObject(className: "image")
+        let objImage: NCMBObject = NCMBObject(className: "profileImage")
         objImage.setObject(customerId!, forKey: "customerId")
-        objImage.setObject("http://test.localhost/NailApp_NoUseNifty/images/" + String(time) + ".jpg", forKey: "imagePath")
-//        objImage.save(&saveError)
+        objImage.setObject("http://test.localhost/NailApp_NoUseNifty/profileImages/" + String(time) + ".jpg", forKey: "imagePath")
+        //        objImage.save(&saveError)
         objImage.saveInBackgroundWithBlock { (error: NSError?) -> Void in
             if let e = error {
                 // 端末情報の登録が失敗した場合の処理
                 print(e.description)
                 if (e.code == 409001){
                     // 失敗した原因がdeviceTokenの重複だった場合
-//                    self.updateExistInstallation(installation)
+                    //                    self.updateExistInstallation(installation)
                 } else {
                     // deviceTokenの重複以外のエラーが返ってきた場合
                 }
             }
-//            self.removeFromParentViewController()
-//            self.view.removeFromSuperview()
+            self.removeFromParentViewController()
+            self.view.removeFromSuperview()
         }
     }
     

@@ -11,12 +11,15 @@ import UIKit
 class MyCollectionViewCell: UICollectionViewCell {
     @IBOutlet var image : UIImageView?
     
+    @IBOutlet weak var FavImage: UIImageView!
     @IBOutlet weak var labelSample: UILabel!
+    var favFlg: Bool!
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
     required init?(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
+//        image!.frame = self.contentView.frame
     }
 }

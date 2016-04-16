@@ -37,10 +37,13 @@ class SecondViewController: UIViewController {
                 let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
                 alertController.addAction(defaultAction)
                 
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.presentViewController(alertController, animated: true, completion: self.hiroki)
                 
             }
         }))
+    }
+    func hiroki() {
+        print("hiroki")
     }
     @IBAction func registerUser(sender: AnyObject) {
         

@@ -50,6 +50,8 @@ class NavigationMainController: UINavigationController,UIPageViewControllerDeleg
         pageController = UIPageViewController()
         navigationView = UIView()
         selectionBar = UIView()
+        print("rootVC.view.frame")
+        print(rootViewController.view.frame)
         super.init(rootViewController: rootViewController)
     }
     
@@ -70,7 +72,10 @@ class NavigationMainController: UINavigationController,UIPageViewControllerDeleg
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    //%%% color of the status bar
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.Default
+    }
     //%%% sets up the tabs using a loop.  You can take apart the loop to customize individual buttons, but remember to tag the buttons.  (button.tag=0 and the second button.tag=1, etc)
     func setupSegmentButtons() {
         
@@ -79,7 +84,7 @@ class NavigationMainController: UINavigationController,UIPageViewControllerDeleg
         let numControllers :Int = viewControllerArray.count
         
         if (buttonText.count == 0) {
-            buttonText = ["New","Popular","Favorite"] //%%%buttontitle
+            buttonText = ["New","Popular"] //%%%buttontitle
         }
         
         for (var i = 0 ; i < numControllers; i++) {
