@@ -9,12 +9,15 @@
 import UIKit
 
 class NavigationMainController: UINavigationController,UIPageViewControllerDelegate,UIPageViewControllerDataSource,UIScrollViewDelegate {
-    let X_BUFFER:CGFloat = 0  //%%% the number of pixels on either side of the segment
-    
-    let HEIGHT:CGFloat = 30   //%%% height of the segment
+    // もともと0だったが-10位がちょうどいいかもNew,Popularの部分の横幅に関連する。
+    let X_BUFFER:CGFloat = -10  //%%% the number of pixels on either side of the segment
+    // もともと30。New,Popularの部分の縦幅
+    let HEIGHT:CGFloat = 44   //%%% height of the segment
     
     let X_OFFSET:CGFloat = 8 //%%% for some reason there's a little bit of a glitchy offset.  I'm going to look for a better workaround in the future
-    let Y_BUFFER:CGFloat = 14 //%%% number of pixels on top of the segment
+    
+    // もともと14。New,Popularの部分の縦幅に関連する？
+    let Y_BUFFER:CGFloat = 0 //%%% number of pixels on top of the segment
     let SELECTOR_Y_BUFFER:CGFloat = 40 //%%% the y-value of the bar that shows what page you are on (0 is the top)
     let SELECTOR_HEIGHT:CGFloat = 4 //%%% thickness of the selector bar
     
@@ -28,6 +31,7 @@ class NavigationMainController: UINavigationController,UIPageViewControllerDeleg
     var navDelegate:AnyObject?
     var panGestureRecognizer :UIPanGestureRecognizer?
     var buttonText :[String] = []
+    var hyojizumiFlg: Bool?
     
     required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         pageScrollView = UIScrollView()
@@ -80,7 +84,7 @@ class NavigationMainController: UINavigationController,UIPageViewControllerDeleg
     func setupSegmentButtons() {
         
         navigationView = UIView(frame: CGRectMake(0,0,self.view.frame.size.width,self.navigationBar.frame.size.height))
-        
+        navigationView.backgroundColor = UIColor.blueColor() // 付け足してみた。
         let numControllers :Int = viewControllerArray.count
         
         if (buttonText.count == 0) {
@@ -93,7 +97,7 @@ class NavigationMainController: UINavigationController,UIPageViewControllerDeleg
             navigationView.addSubview(button)
             
             button.tag = i //%%% IMPORTANT: if you make your own custom buttons, you have to tag them appropriately
-            button.backgroundColor = UIColor(red: 0.03, green: 0.07, blue: 0.08, alpha: 1) //%%% buttoncolors
+            button.backgroundColor = UIColor(red: 0.80, green: 0.07, blue: 0.08, alpha: 1) //%%% buttoncolors
             button.addTarget(self, action: "tapSegmentButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
             button.setTitle(buttonText[i], forState:UIControlState.Normal) //%%%buttontitle
         }
@@ -118,8 +122,14 @@ class NavigationMainController: UINavigationController,UIPageViewControllerDeleg
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
     //                                                        //
     override func viewWillAppear(animated: Bool) {
-        self.setupPageViewController()
-        self.setupSegmentButtons()
+        if (((hyojizumiFlg)) != nil) {
+            
+        } else {
+            self.setupPageViewController()
+            self.setupSegmentButtons()
+            hyojizumiFlg = true
+        }
+        
     }
     
     //%%% generic setup stuff for a pageview controller.  Sets up the scrolling style and delegate for the controller

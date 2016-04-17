@@ -1,67 +1,67 @@
-//
-//  chooseFromCamera.swift
-//  NailApp
-//
-//  Created by DaichiSaito on 2016/03/09.
-//  Copyright © 2016年 DaichiSaito. All rights reserved.
-//
-
 import UIKit
-class uploadProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    var imageForUpload = UIImageView()
+
+class upload: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBAction func uploadImageButton(sender: AnyObject) {
-        uploadImages()
+
+    @IBOutlet weak var uploadTextView: UITextView!
+    @IBOutlet weak var uploadImageView: UIImageView!
+    @IBAction func addButton(sender: AnyObject) {
+//        self.pickImageFromCamera()
+        self.pickImageFromLibrary()
     }
+    
+    @IBAction func uploadButton(sender: AnyObject) {
+        self.myImageUploadRequest()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // Do any additional setup after loading the view, typically from a nib.
     }
-    func uploadImages() {
-        
-        let photoLibrary = UIImagePickerControllerSourceType.PhotoLibrary
-        
-        if UIImagePickerController.isSourceTypeAvailable(photoLibrary) {
-            
-            let picker = UIImagePickerController()
-            picker.sourceType = photoLibrary
-            picker.delegate = self
-            self.presentViewController(picker, animated: true, completion: nil)
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    
+    // 写真を撮ってそれを選択
+    func pickImageFromCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            let controller = UIImagePickerController()
+            controller.delegate = self
+            controller.sourceType = UIImagePickerControllerSourceType.Camera
+            self.presentViewController(controller, animated: true, completion: nil)
         }
     }
     
+    // ライブラリから写真を選択する
+    func pickImageFromLibrary() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+            let controller = UIImagePickerController()
+            controller.delegate = self
+            controller.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            self.presentViewController(controller, animated: true, completion: nil)
+        }
+    }
+    
+    
+    // 写真を選択した時に呼ばれる
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
         if info[UIImagePickerControllerOriginalImage] != nil {
             let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-            //iamgeForUploadというUIImageを用意しておいてそこに一旦預ける
-            self.imageForUpload.image = image
-            //            self.AFNetworkingUploadRequest()
-            self.myImageUploadRequest()
+//            let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+            print(image)
+            self.uploadImageView.image = image
         }
         picker.dismissViewControllerAnimated(true, completion: nil)
-        
-    }
-    
-    // 画像をリサイズ
-    func resize(image: UIImage, width: Int, height: Int) -> UIImage {
-        let imageRef: CGImageRef = image.CGImage!
-        var sourceWidth: Int = CGImageGetWidth(imageRef)
-        var sourceHeight: Int = CGImageGetHeight(imageRef)
-        
-        var size: CGSize = CGSize(width: width, height: height)
-        UIGraphicsBeginImageContext(size)
-        image.drawInRect(CGRectMake(0, 0, size.width, size.height))
-        
-        var resizeImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return resizeImage
     }
     
     //画像のアップロード処理
     func myImageUploadRequest() {
         //myUrlには自分で用意したphpファイルのアドレスを入れる
-        let myUrl = NSURL(string:"http://test.localhost/NailApp_NoUseNifty/uploadProfileImageToFileServer.php")
+        let myUrl = NSURL(string:"http://test.localhost/NailApp_NoUseNifty/uploadToFileServer.php")
         //        let myUrl = NSURL(string:"http://dsh4k2h4k2.esy.es/uploadTest4.php")
         let request = NSMutableURLRequest(URL:myUrl!)
         request.HTTPMethod = "POST"
@@ -80,7 +80,7 @@ class uploadProfileViewController: UIViewController, UIImagePickerControllerDele
         let boundary = generateBoundaryString()
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let imageData = UIImageJPEGRepresentation(self.imageForUpload.image!, 1)
+        let imageData = UIImageJPEGRepresentation(self.uploadImageView.image!, 1)
         if(imageData==nil) { return; }
         request.HTTPBody = createBodyWithParameters(param, filePathKey: "file", imageDataKey: imageData!, boundary: boundary)
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
@@ -97,6 +97,9 @@ class uploadProfileViewController: UIViewController, UIImagePickerControllerDele
             print("****** response data = \(responseString!)")
             dispatch_async(dispatch_get_main_queue(),{
                 //アップロード完了
+                // これかかないとアップロード後画面が固まる。
+//                self.removeFromParentViewController()
+//                self.view.removeFromSuperview()
             });
         }
         task.resume()
@@ -104,9 +107,11 @@ class uploadProfileViewController: UIViewController, UIImagePickerControllerDele
         // niftyにもあげないと
         // imageコレクションも更新
         var saveError: NSError? = nil
-        let objImage: NCMBObject = NCMBObject(className: "profileImage")
+        let objImage: NCMBObject = NCMBObject(className: "image")
         objImage.setObject(userName!, forKey: "userName")
-        objImage.setObject("http://test.localhost/NailApp_NoUseNifty/profileImages/" + String(time) + ".jpg", forKey: "imagePath")
+        objImage.setObject("http://test.localhost/NailApp_NoUseNifty/images/" + String(time) + ".jpg", forKey: "imagePath")
+        objImage.setObject(uploadTextView.text!, forKey: "comment")
+        objImage.setObject(0, forKey: "kawaiine")
         //        objImage.save(&saveError)
         objImage.saveInBackgroundWithBlock { (error: NSError?) -> Void in
             if let e = error {
@@ -119,8 +124,8 @@ class uploadProfileViewController: UIViewController, UIImagePickerControllerDele
                     // deviceTokenの重複以外のエラーが返ってきた場合
                 }
             }
-            self.removeFromParentViewController()
-            self.view.removeFromSuperview()
+            //            self.removeFromParentViewController()
+            //            self.view.removeFromSuperview()
         }
     }
     
@@ -148,4 +153,5 @@ class uploadProfileViewController: UIViewController, UIImagePickerControllerDele
         body.appendString("--\(boundary)--\r\n")
         return body
     }
+
 }

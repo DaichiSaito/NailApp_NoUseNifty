@@ -78,6 +78,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5Cn-3h-Ugt">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="T3L-qa-JZ7">
                                     <size key="itemSize" width="106" height="106"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -180,12 +181,42 @@
                                             <segue destination="GBK-Bz-kRp" kind="show" id="wRg-KN-zPP"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="コメント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fy1-Eg-viV">
+                                        <rect key="frame" x="15" y="51" width="85" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y0G-0C-H0m">
+                                        <rect key="frame" x="134" y="51" width="226" height="116"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wq-pJ-O5V">
+                                        <rect key="frame" x="62" y="309" width="30" height="30"/>
+                                        <state key="normal" title="通報"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="かわいいね数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRz-JW-RSt">
+                                        <rect key="frame" x="8" y="164" width="109" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="○○○" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEs-TQ-X7y">
+                                        <rect key="frame" x="125" y="164" width="51" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.85417972655498353" blue="0.98510078796845491" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                     </scrollView>
                     <connections>
+                        <outlet property="comment" destination="y0G-0C-H0m" id="hCE-ke-8aG"/>
+                        <outlet property="countKwaiine" destination="qEs-TQ-X7y" id="fPk-zQ-PmC"/>
                         <outlet property="detailImage2" destination="KIS-Ch-vkx" id="LwB-Wh-RMp"/>
                         <outlet property="nailistBtn" destination="emp-L3-EH2" id="MRc-eb-W6h"/>
                         <outlet property="scrollView" destination="Tqs-a1-NBl" id="ZQ4-pU-P0O"/>
@@ -204,15 +235,12 @@
                         <viewControllerLayoutGuide type="bottom" id="TXK-XC-nx4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Vru-oe-5Vh">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B91-rG-qoJ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="219"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEP-I6-Cpo">
-                                        <rect key="frame" x="8" y="24" width="240" height="170"/>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="一言プロフィール" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OeT-82-8g4">
                                         <rect key="frame" x="256" y="24" width="136" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -232,6 +260,15 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEP-I6-Cpo">
+                                        <rect key="frame" x="8" y="29" width="100" height="100"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="30"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.2371893987" green="0.79782899740000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -255,7 +292,7 @@
             </objects>
             <point key="canvasLocation" x="2304" y="-349"/>
         </scene>
-        <!--Second-->
+        <!--ログイン-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="NailApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -312,24 +349,107 @@
                                     <action selector="logout:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="PbY-EP-KJW"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3I-Kz-2Cf">
+                                <rect key="frame" x="28" y="61" width="210" height="30"/>
+                                <state key="normal" title="アドレス認証用（メール送信）"/>
+                                <connections>
+                                    <action selector="mailAuth:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="0uG-Xr-iKn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uiG-On-EL3">
+                                <rect key="frame" x="25" y="99" width="195" height="30"/>
+                                <state key="normal" title="アドレス認証用（ログイン）"/>
+                                <connections>
+                                    <action selector="mailLogin:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="HyP-Zv-2r3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7NT-gd-Q71">
+                                <rect key="frame" x="71" y="339" width="49" height="30"/>
+                                <state key="normal" title="pointer"/>
+                                <connections>
+                                    <action selector="pointerButton:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="20k-bk-vsa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VAL-uo-HTn">
+                                <rect key="frame" x="70" y="390" width="51" height="30"/>
+                                <state key="normal" title="relation"/>
+                                <connections>
+                                    <action selector="relationButton:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="8QF-a9-dMW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lO4-OY-Kmy">
+                                <rect key="frame" x="77" y="452" width="36" height="30"/>
+                                <state key="normal" title="fetch"/>
+                                <connections>
+                                    <action selector="fetch:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="ReR-BN-gl6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="ログイン" image="second" id="cPa-gy-q4n"/>
                     <connections>
-                        <outlet property="customerId" destination="p5G-6c-a1W" id="zyC-UL-bf1"/>
                         <outlet property="password" destination="KWe-Op-Mgf" id="WVb-YH-ke4"/>
+                        <outlet property="userName" destination="p5G-6c-a1W" id="NQn-mG-vyB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
         </scene>
-        <!--Item-->
+        <!--投稿-->
+        <scene sceneID="o4Y-4q-2vy">
+            <objects>
+                <viewController id="yEZ-uT-t9x" customClass="upload" customModule="NailApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x9z-9W-oRL"/>
+                        <viewControllerLayoutGuide type="bottom" id="cCl-TZ-Xez"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="leF-9y-qrN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uHL-1H-GbD">
+                                <rect key="frame" x="20" y="28" width="130" height="130"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BR1-Di-qrr">
+                                <rect key="frame" x="278" y="78" width="45" height="30"/>
+                                <state key="normal" title="カメラ"/>
+                                <connections>
+                                    <action selector="addButton:" destination="yEZ-uT-t9x" eventType="touchUpInside" id="DFy-J0-ZF5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jgb-gZ-Y9C">
+                                <rect key="frame" x="219" y="513" width="165" height="30"/>
+                                <state key="normal" title="この内容でアップロード"/>
+                                <connections>
+                                    <action selector="uploadButton:" destination="yEZ-uT-t9x" eventType="touchUpInside" id="fGr-1d-7ck"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="写真に対するコメント" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2qZ-Jp-P2Y">
+                                <rect key="frame" x="180" y="236" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.924844384672175" green="1" blue="0.29188576384815934" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="投稿" id="YpZ-9L-f4C"/>
+                    <connections>
+                        <outlet property="uploadImageView" destination="uHL-1H-GbD" id="56f-tv-6KE"/>
+                        <outlet property="uploadTextView" destination="2qZ-Jp-P2Y" id="2Uw-SA-zrb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mVo-3y-vpV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1562" y="0.0"/>
+        </scene>
+        <!--プロフィール-->
         <scene sceneID="ZWf-O6-JrP">
             <objects>
                 <navigationController id="Qit-gf-LWk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="F2Q-bZ-zih"/>
+                    <tabBarItem key="tabBarItem" title="プロフィール" id="F2Q-bZ-zih"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="noJ-MR-IIc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -448,11 +568,11 @@
             </objects>
             <point key="canvasLocation" x="2530" y="2208"/>
         </scene>
-        <!--Item-->
+        <!--P画像投稿-->
         <scene sceneID="wag-yz-jGL">
             <objects>
                 <navigationController id="i67-KT-c0p" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="iVN-Cz-8ec"/>
+                    <tabBarItem key="tabBarItem" title="P画像投稿" id="iVN-Cz-8ec"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ekQ-Om-s1Z">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -480,6 +600,7 @@
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="7yu-j4-6ov"/>
                         <segue destination="Qit-gf-LWk" kind="relationship" relationship="viewControllers" id="RUz-fR-jPD"/>
                         <segue destination="i67-KT-c0p" kind="relationship" relationship="viewControllers" id="nAf-21-u23"/>
+                        <segue destination="yEZ-uT-t9x" kind="relationship" relationship="viewControllers" id="Lbc-X2-sFc"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -554,6 +675,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OwV-2S-qEQ"/>
+        <segue reference="wRg-KN-zPP"/>
     </inferredMetricsTieBreakers>
 </document>

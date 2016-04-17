@@ -16,10 +16,11 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
     var imageArray: NSMutableArray = NSMutableArray()
     var favDataArray: NSArray = NSArray()
     var cellRect: CGRect?
+    var favFlg: Bool = false
     @IBOutlet weak var FavImage: UIImageView!
 //    var favImageView = UIImageView()
     var imageInfo = []
-    var customerId: String?
+    var userName: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -124,10 +125,10 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
          */
         
         let query: NCMBQuery = NCMBQuery(className: "image")
-        if(customerId == nil) {
+        if(userName == nil) {
             
         } else {
-            query.whereKey("customerId", equalTo: customerId!)
+            query.whereKey("userName", equalTo: userName!)
             
         }
         query.orderByDescending("createDate")
@@ -200,7 +201,7 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
         //        let customerId = self.customerId.text;
         // パラメータはnilでおけ。New側の処理だから最新のものから全部とってくるため。
         let param = [
-            "customerId" : "1234"
+            "userName" : "1234"
         ]
         //        let param = nil
         
@@ -428,14 +429,14 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
 //        let customerIdOfImageInfo = targetFavData.objectForKey("customerId")!
         // ログイン中のユーザーの取得
         let carrentUser = NCMBUser.currentUser()
-        let customerId = carrentUser.userName
+        let userName = carrentUser.userName
         // nifty_cloudのFavテーブルオブジェクトを取得。
         let queryFav: NCMBQuery = NCMBQuery(className: "Fav")
         // imageのobjectIdとFavのimageObjectIdが一致するものを抽出
         // つまり、タップしたimageに対応するレコードがFavにあるかどうか。
         queryFav.whereKey("imageObjectId", equalTo: objectIdOfImageInfo)
 //        queryFav.whereKey("customerId", equalTo: customerIdOfImageInfo)
-        queryFav.whereKey("customerId", equalTo: customerId)
+        queryFav.whereKey("userName", equalTo: userName)
         queryFav.findObjectsInBackgroundWithBlock({(items, error) in
             
             if error == nil {
@@ -444,13 +445,18 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
                 // items.countは1か0しかない。
                 if items.count > 0 {
                     let favFlg: Bool = ((items[0].objectForKey("favFlg") as? Bool))!
+//                    self.favFlg = favFlg
+//                    // favFlgをself.imageInfoに追加してあげたほうが後々楽かも。
+//                    targetFavData.favFlg = favFlg
                     if (favFlg) {
 //                        cell.FavImage.image = UIImage(named: "heart_like.png")
                         favImageView.image = UIImage(named: "heart_like.png")
+//                        self.favFlg = true // ここじゃ全然ダメ
                         
                     } else {
 //                        cell.FavImage.image = UIImage(named: "heart_unlike.png")
                         favImageView.image = UIImage(named: "heart_unlike.png")
+//                        self.favFlg = false // ここじゃ全然ダメ
                     }
 //                    // Favに保存するためのオブジェクト生成
 //                    let objFav: NCMBObject = NCMBObject(className: "Fav")
@@ -645,17 +651,17 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
         // imageのobjectIdを取得。
         let objectIdOfImageInfo = targetFavData.objectForKey("objectId")!
         // imageのcustomerIdを取得。
-        let customerIdOfImageInfo = targetFavData.objectForKey("customerId")!
+        let userNameOfImageInfo = targetFavData.objectForKey("userName")!
         // ログイン中のユーザーの取得
         let carrentUser = NCMBUser.currentUser()
-        let customerId = carrentUser.userName
+        let userName = carrentUser.userName
         // nifty_cloudのFavテーブルオブジェクトを取得。
         let queryFav: NCMBQuery = NCMBQuery(className: "Fav")
         // imageのobjectIdとFavのimageObjectIdが一致するものを抽出
         // つまり、タップしたimageに対応するレコードがFavにあるかどうか。
         queryFav.whereKey("imageObjectId", equalTo: objectIdOfImageInfo)
 //        queryFav.whereKey("customerId", equalTo: customerIdOfImageInfo)
-        queryFav.whereKey("customerId", equalTo: customerId)
+        queryFav.whereKey("userName", equalTo: userName)
         queryFav.findObjectsInBackgroundWithBlock({(items, error) in
 
             if error == nil {
@@ -671,17 +677,43 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
                     let favFlg: Bool = ((items[0].objectForKey("favFlg") as? Bool))!
                     // customerId
 //                    let customerId: String = (items[0].objectForKey("customerId") as? String)!
+                    // 画像の変更
+                    if (favFlg) {
+                        imageView.image = UIImage(named: "heart_unlike.png")
+                        // imageコレクション内のkawaiine数も更新
+                        let objImage: NCMBObject = NCMBObject(className: "image")
+                        objImage.objectId = objectIdOfImageInfo as! String
+                        objImage.fetchInBackgroundWithBlock({(error) in
+                            var saveError: NSError? = nil
+                            if (error == nil) {
+                                objImage.incrementKey("kawaiine",byAmount: -1)
+                                objImage.save(&saveError)
+                            } else {
+                                print("kawaiine保存時にエラーが発生しました: \(error)")
+                            }
+                        })
+                        
+                    } else {
+                        imageView.image = UIImage(named: "heart_like.png")
+                        // imageコレクション内のkawaiine数も更新
+                        let objImage: NCMBObject = NCMBObject(className: "image")
+                        objImage.objectId = objectIdOfImageInfo as! String
+                        objImage.fetchInBackgroundWithBlock({(error) in
+                            var saveError: NSError? = nil
+                            if (error == nil) {
+                                objImage.incrementKey("kawaiine",byAmount: 1)
+                                objImage.save(&saveError)
+                            } else {
+                                print("kawaiine保存時にエラーが発生しました: \(error)")
+                            }
+                        })
+                    }
                     // プロパティ設定
                     objFav.objectId = objectId
                     objFav.fetchInBackgroundWithBlock({(error) in
                             
                         if (error == nil) {
-                            // 画像の変更
-                            if (favFlg) {
-                                imageView.image = UIImage(named: "heart_unlike.png")
-                            } else {
-                                imageView.image = UIImage(named: "heart_like.png")
-                            }
+                            
                             
                             // favFlgの反対を設定
                             objFav.setObject(!favFlg, forKey: "favFlg")
@@ -689,7 +721,7 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
                             objFav.save(&saveError)
                             
                         } else {
-                            print("データ取得処理時にエラーが発生しました: \(error)")
+                            print("データ取得処理時にエラーが発生しました。!fav: \(error)")
                         }
                     })
                     // MemoClassのカワイイネの数も更新
@@ -714,7 +746,7 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
                     let objFav: NCMBObject = NCMBObject(className: "Fav")
                     objFav.setObject(targetFavData.objectForKey("objectId"), forKey: "imageObjectId")
 //                    objFav.setObject(targetFavData.objectForKey("customerId"), forKey: "customerId")
-                    objFav.setObject(customerId, forKey: "customerId")
+                    objFav.setObject(userName, forKey: "userName")
                     objFav.setObject(true, forKey: "favFlg")
                     objFav.save(&saveError)
                     
@@ -740,6 +772,29 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
             
             
         })
+//        // imageコレクション内のkawaiine数も更新
+//        //                    let objMemoClass: NCMBObject = NCMBObject(className: "MemoClass")
+//        let objImage: NCMBObject = NCMBObject(className: "image")
+//        // imageのを取得。
+////        let customerIdOfImageInfo = targetFavData.objectForKey("customerId")!
+////
+//        objImage.objectId = objectIdOfImageInfo as! String
+//        objImage.fetchInBackgroundWithBlock({(error) in
+//            var saveError: NSError? = nil
+//            if (error == nil) {
+//                if (self.favFlg) {
+//                    objImage.incrementKey("kawaiine",byAmount: -1)
+//                } else {
+//                    objImage.incrementKey("kawaiine",byAmount: 1)
+//                }
+//                objImage.save(&saveError)
+//
+//            } else {
+//                print("kawaiine保存時にエラーが発生しました: \(error)")
+//            }
+//        })
+
+        
     }
     override func prefersStatusBarHidden() -> Bool {
         return true

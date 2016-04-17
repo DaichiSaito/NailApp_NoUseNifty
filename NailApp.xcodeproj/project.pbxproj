@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9439561E1CB90E60001FB085 /* DetailUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9439561D1CB90E60001FB085 /* DetailUserController.swift */; };
+		944591D41CC1CCA90088D60A /* upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944591D31CC1CCA90088D60A /* upload.swift */; };
+		944591D61CC251EE0088D60A /* myProfileCollectionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944591D51CC251EE0088D60A /* myProfileCollectionAction.swift */; };
 		944B88121C8A8FD60042E911 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944B88111C8A8FD60042E911 /* AppDelegate.swift */; };
 		944B88141C8A8FD60042E911 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944B88131C8A8FD60042E911 /* FirstViewController.swift */; };
 		944B88161C8A8FD60042E911 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944B88151C8A8FD60042E911 /* SecondViewController.swift */; };
@@ -39,6 +41,8 @@
 		259AF81E475783C63C2EDB40 /* Pods-NailApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NailApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NailApp/Pods-NailApp.debug.xcconfig"; sourceTree = "<group>"; };
 		46D1412DFEDE4F537A715391 /* libPods-NailApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NailApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9439561D1CB90E60001FB085 /* DetailUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailUserController.swift; sourceTree = "<group>"; };
+		944591D31CC1CCA90088D60A /* upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = upload.swift; sourceTree = "<group>"; };
+		944591D51CC251EE0088D60A /* myProfileCollectionAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myProfileCollectionAction.swift; sourceTree = "<group>"; };
 		944B880E1C8A8FD60042E911 /* NailApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NailApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		944B88111C8A8FD60042E911 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		944B88131C8A8FD60042E911 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				94B96E001CBA06980043F88B /* ownProfileViewController.swift */,
 				94B96E021CBB0A3E0043F88B /* settingViewController.swift */,
 				94B96E041CBB13EC0043F88B /* uploadProfileViewController.swift */,
+				944591D31CC1CCA90088D60A /* upload.swift */,
+				944591D51CC251EE0088D60A /* myProfileCollectionAction.swift */,
 			);
 			path = NailApp;
 			sourceTree = "<group>";
@@ -287,7 +293,9 @@
 				944CC9EA1C901A3B0029C723 /* MyCollectionViewCell.swift in Sources */,
 				94C5AE9F1CB11B3D0040DA38 /* Macro.swift in Sources */,
 				944CC9E81C9017900029C723 /* CollectionViewMainController.swift in Sources */,
+				944591D61CC251EE0088D60A /* myProfileCollectionAction.swift in Sources */,
 				944B88161C8A8FD60042E911 /* SecondViewController.swift in Sources */,
+				944591D41CC1CCA90088D60A /* upload.swift in Sources */,
 				944B88121C8A8FD60042E911 /* AppDelegate.swift in Sources */,
 				944B88141C8A8FD60042E911 /* FirstViewController.swift in Sources */,
 				944CC9E41C9014510029C723 /* HomeTabMainController.swift in Sources */,

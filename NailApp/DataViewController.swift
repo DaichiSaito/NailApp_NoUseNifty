@@ -10,6 +10,8 @@ import UIKit
 
 class DataViewController: UIViewController {
     
+    @IBOutlet weak var countKwaiine: UILabel!
+    @IBOutlet weak var comment: UILabel!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var detailImage2: UIImageView!
 //    @IBOutlet weak var nailist: UILabel!
@@ -77,7 +79,18 @@ class DataViewController: UIViewController {
 //        scrollView.addSubview(imageView3)
         
 //        self.nailist.text = self.imageInfo!.objectForKey("customerId") as? String!
-        self.nailistBtn.setTitle(self.imageInfo!.objectForKey("customerId") as? String!, forState: .Normal)
+        self.nailistBtn.setTitle(self.imageInfo!.objectForKey("userName") as? String!, forState: .Normal)
+        if (self.imageInfo!.objectForKey("comment") as? String == nil) {
+            self.comment.text = "コメントなし"
+        } else {
+            self.comment.text = self.imageInfo!.objectForKey("comment") as? String    
+        }
+        if (self.imageInfo!.objectForKey("kawaiine") as? Int == nil) {
+            self.countKwaiine.text = "0"
+        } else {
+            self.countKwaiine.text = String(self.imageInfo!.objectForKey("kawaiine") as! Int)
+        }
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -89,8 +102,8 @@ class DataViewController: UIViewController {
 //        controller.imageInfo = self.imageInfo
         let controller = segue.destinationViewController as! DetailUserController
 //        controller.customerId = self.imageInfo?.objectForKey("customerId") as! String
-        controller.tmpCustomerId = self.imageInfo?.objectForKey("customerId") as? String
-        controller.tmpUserName = self.imageInfo?.objectForKey("customerId") as? String
+//        controller.tmpCustomerId = self.imageInfo?.objectForKey("customerId") as? String
+        controller.tmpUserName = self.imageInfo?.objectForKey("userName") as? String
         
         
     }

@@ -19,7 +19,7 @@ class DetailUserController: UIViewController {
     var imageInfo = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        userName.text = self.tmpCustomerId
+        userName.text = self.tmpUserName
         getProfileImagePath()
 //        setProfileImage()
     }
@@ -36,7 +36,7 @@ class DetailUserController: UIViewController {
         print("segue")
         let controller = segue.destinationViewController as! CollectionViewMainController
         //        controller.customerId = self.imageInfo?.objectForKey("customerId") as! String
-        controller.customerId = tmpCustomerId!
+        controller.userName = tmpUserName!
         
     }
     func setProfileImage() {
@@ -52,6 +52,7 @@ class DetailUserController: UIViewController {
         //        let url = NSURL(targetImageData
         let placeholder = UIImage(named: "transparent.png")
         self.profileImage.setImageWithURL(url, placeholderImage: placeholder)
+//        profileImage.layer.cornerRadius = 40
         
     }
     func getProfileImagePath() {
@@ -67,10 +68,10 @@ class DetailUserController: UIViewController {
          */
         
         let query: NCMBQuery = NCMBQuery(className: "profileImage")
-        if(self.tmpCustomerId == nil) {
+        if(self.tmpUserName == nil) {
             
         } else {
-            query.whereKey("customerId", equalTo: self.tmpCustomerId!)
+            query.whereKey("userName", equalTo: self.tmpUserName!)
             
         }
         query.orderByDescending("createDate")

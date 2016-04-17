@@ -114,13 +114,13 @@ class chooseFromCamera: UIViewController, UIImagePickerControllerDelegate, UINav
         
         // ログイン中のユーザーの取得
         let carrentUser = NCMBUser.currentUser()
-        let customerId = carrentUser.userName
-        print(customerId!)
+        let userName = carrentUser.userName
+        print(userName!)
         let time:Int = Int(NSDate().timeIntervalSince1970)
         print(time)
         //下記のパラメータはあくまでもPOSTの例
         let param = [
-            "customerId" : customerId!,
+            "userName" : userName!,
             "fileName" : String(time)
         ]
         let boundary = generateBoundaryString()
@@ -154,7 +154,7 @@ class chooseFromCamera: UIViewController, UIImagePickerControllerDelegate, UINav
         // imageコレクションも更新
         var saveError: NSError? = nil
         let objImage: NCMBObject = NCMBObject(className: "image")
-        objImage.setObject(customerId!, forKey: "customerId")
+        objImage.setObject(userName!, forKey: "userName")
         objImage.setObject("http://test.localhost/NailApp_NoUseNifty/images/" + String(time) + ".jpg", forKey: "imagePath")
 //        objImage.save(&saveError)
         objImage.saveInBackgroundWithBlock { (error: NSError?) -> Void in

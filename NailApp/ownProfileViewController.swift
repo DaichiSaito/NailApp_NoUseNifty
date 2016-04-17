@@ -42,7 +42,7 @@ class ownProfileViewController: UIViewController {
         let carrentUser = NCMBUser.currentUser()
         print("carrentUser")
         print(carrentUser)
-        controller.tmpCustomerId = carrentUser.userName
+//        controller.tmpCustomerId = carrentUser.userName
         controller.tmpUserName = carrentUser.userName
         
         
