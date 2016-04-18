@@ -416,6 +416,10 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
             print("FavImage!!!!")
             print(imageView.tag)
 //            imageView.image = UIImage(named: "heart_like.png")
+            if(NCMBUser.currentUser() == nil) {
+                print("ログインせよ")
+                return
+            }
             let targetFavData: AnyObject = self.imageInfo[imageView.tag]
             updateFavData(targetFavData, imageView: imageView)
             
@@ -427,16 +431,19 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
         let objectIdOfImageInfo = targetFavData.objectForKey("objectId")!
         // imageのcustomerIdを取得。
 //        let customerIdOfImageInfo = targetFavData.objectForKey("customerId")!
-        // ログイン中のユーザーの取得
-        let carrentUser = NCMBUser.currentUser()
-        let userName = carrentUser.userName
+        
         // nifty_cloudのFavテーブルオブジェクトを取得。
         let queryFav: NCMBQuery = NCMBQuery(className: "Fav")
         // imageのobjectIdとFavのimageObjectIdが一致するものを抽出
         // つまり、タップしたimageに対応するレコードがFavにあるかどうか。
         queryFav.whereKey("imageObjectId", equalTo: objectIdOfImageInfo)
 //        queryFav.whereKey("customerId", equalTo: customerIdOfImageInfo)
-        queryFav.whereKey("userName", equalTo: userName)
+        // ログイン中のユーザーの取得
+        let carrentUser = NCMBUser.currentUser()
+        if(carrentUser != nil) {
+            let userName = carrentUser.userName
+            queryFav.whereKey("userName", equalTo: userName)
+        }
         queryFav.findObjectsInBackgroundWithBlock({(items, error) in
             
             if error == nil {

@@ -61,7 +61,8 @@ class upload: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     //画像のアップロード処理
     func myImageUploadRequest() {
         //myUrlには自分で用意したphpファイルのアドレスを入れる
-        let myUrl = NSURL(string:"http://test.localhost/NailApp_NoUseNifty/uploadToFileServer.php")
+//        let myUrl = NSURL(string:"http://test.localhost/NailApp_NoUseNifty/uploadToFileServer.php")
+        let myUrl = NSURL(string: urlUploadImagesPhp)
         //        let myUrl = NSURL(string:"http://dsh4k2h4k2.esy.es/uploadTest4.php")
         let request = NSMutableURLRequest(URL:myUrl!)
         request.HTTPMethod = "POST"
@@ -109,7 +110,8 @@ class upload: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         var saveError: NSError? = nil
         let objImage: NCMBObject = NCMBObject(className: "image")
         objImage.setObject(userName!, forKey: "userName")
-        objImage.setObject("http://test.localhost/NailApp_NoUseNifty/images/" + String(time) + ".jpg", forKey: "imagePath")
+//        objImage.setObject("http://test.localhost/NailApp_NoUseNifty/images/" + String(time) + ".jpg", forKey: "imagePath")
+        objImage.setObject(urlUploadImagesLocation + String(time) + ".jpg", forKey: "imagePath")
         objImage.setObject(uploadTextView.text!, forKey: "comment")
         objImage.setObject(0, forKey: "kawaiine")
         //        objImage.save(&saveError)
