@@ -25,31 +25,16 @@ class DetailUserController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        //        let cell = sender as! UICollectionViewCell
-        //        let indexPath = self.collectionView!.indexPathForCell(cell)
-        //        let controller = segue.destinationViewController as! DetailViewController
-        //        controller.indexPath = indexPath!
-        //        controller.imageInfo = self.imageInfo
-//        let controller = segue.destinationViewController as! DetailUserController
-        //        controller.customerId = self.imageInfo?.objectForKey("customerId") as! String
         print("segue")
         let controller = segue.destinationViewController as! CollectionViewMainController
-        //        controller.customerId = self.imageInfo?.objectForKey("customerId") as! String
         controller.userName = tmpUserName!
         
     }
     func setProfileImage() {
         print("setProfileImageの設定開始")
-//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MyCollectionViewCell
         //        //各値をセルに入れる
-        //        let targetImageData: NSDictionary = self.imageInfo[indexPath.row] as! NSDictionary
         let targetImageData = self.imageInfo[0]
-        //        let url = NSURL(string: targetImageData["imagePath"] as! String)
-        //        let url = NSURL(fileURLWithPath: (targetImageData.objectForKey("imagePath") as? String)!)
         let url = NSURL(string: (targetImageData.objectForKey("imagePath") as? String)!)
-        
-        //        let url = NSURL(targetImageData
         let placeholder = UIImage(named: "transparent.png")
         self.profileImage.setImageWithURL(url, placeholderImage: placeholder)
 //        profileImage.layer.cornerRadius = 40

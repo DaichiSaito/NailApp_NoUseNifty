@@ -23,63 +23,36 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
     var pageData: [String] = []
 //    var imageData: [UIImage] = []
     var imageArray: NSArray = NSArray()
-    var indexMemoArray: Int = 0
     var memoArray: NSArray = NSArray()
     var imageInfo = []
     var indexImageInfoArray: Int = 0
     
     // memoArrayとindexPathを引数に持つinit
-    init(_memoArray: NSArray, _indexPath: NSIndexPath) {
+    init(_imageInfo: NSArray, _indexPath: NSIndexPath) {
         super.init()
         // Create the data model.
         let dateFormatter = NSDateFormatter()
         // 年月。１２月まで。実際不要。
         pageData = dateFormatter.monthSymbols
-        // memoArrayのindex。前画面で選択したcellのindex。
-        indexMemoArray = _indexPath.row
+        // 前画面で選択したcellのindex。
         indexImageInfoArray = _indexPath.row
-        // memoArrayの実態。JSON形式。
-        memoArray = _memoArray
-        imageInfo = _memoArray
+        // imageInfoの実態。JSON形式。
+        imageInfo = _imageInfo
     }
     
     func viewControllerAtIndex(index: Int, storyboard: UIStoryboard) -> DataViewController? {
         // Return the data view controller for the given index.
-        // self.pageData.countは常に12。一番最初、indexには前画面で選択したcellのindexが入る。
-        if (self.pageData.count == 0) || (index >= self.imageInfo.count) {
+        // 一番最初、indexには前画面で選択したcellのindexが入る。
+        if (index >= self.imageInfo.count) {
             return nil
         }
         
         // Create a new view controller and pass suitable data.
         let dataViewController = storyboard.instantiateViewControllerWithIdentifier("DataViewController") as! DataViewController
-        
-        // ここに通信処理
-//        let targetImageData: NSDictionary = self.imageInfo[indexIgvv mageInfoArray] as! NSDictionary
+    
         let targetImageData = self.imageInfo[indexImageInfoArray]
-//        let url = NSURL(string: targetImageData["imagePath"] as! String)
-//        let url = NSURL(string: (targetImageData.objectForKey("imagePath") as? String)!)
-        
-        //        let url = NSURL(targetImageData
-        let placeholder = UIImage(named: "transparent.png")
         // dataViewControllerのインスタンス変数に情報を注入
         dataViewController.imageInfo = targetImageData as? NCMBObject
-//        dataViewController.url = url
-//        dataViewController.detailImage2.setImageWithURL(url, placeholderImage: placeholder)
-        //画像データの取得
-//        let filename: String = (targetMemoData.objectForKey("filename") as? String)!
-//        let fileData = NCMBFile.fileWithName(filename, data: nil) as! NCMBFile
-//        
-//        fileData.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError!) -> Void in
-//            
-//            if error != nil {
-//                print("写真の取得失敗: \(error)")
-//            } else {
-//                dataViewController.detailImage2.image = UIImage(data: imageData!)
-//            }
-//        }
-
-        
-//        dataViewController.dataImage = self.imageArray[index] as! UIImage
         // ここで二つのVCを返却すればいい感じで次の画像も取得してセットしておくことができるかも。
         return dataViewController
     }
@@ -94,27 +67,20 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
     // MARK: - Page View Controller Data Source
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-//        var index = self.indexOfViewController(viewController as! DataViewController)
-//        var index = self.indexMemoArray
-        self.indexImageInfoArray--
+//        self.indexImageInfoArray -= 1
         if (self.indexImageInfoArray == 0) || (self.indexImageInfoArray == NSNotFound) {
             return nil
         }
-        
-//        index--
-//        self.indexMemoArray--
+        self.indexImageInfoArray -= 1
         return self.viewControllerAtIndex(self.indexImageInfoArray, storyboard: viewController.storyboard!)
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-//        var index = self.indexOfViewController(viewController as! DataViewController)
-//        var index = self.indexMemoArray
         if self.indexImageInfoArray == NSNotFound {
             return nil
         }
         
-//        index++
-        self.indexImageInfoArray++
+        self.indexImageInfoArray += 1
         if self.indexImageInfoArray == self.imageInfo.count {
             return nil
         }
