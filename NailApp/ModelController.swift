@@ -50,7 +50,9 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
         // Create a new view controller and pass suitable data.
         let dataViewController = storyboard.instantiateViewControllerWithIdentifier("DataViewController") as! DataViewController
     
-        let targetImageData = self.imageInfo[indexImageInfoArray]
+//        let targetImageData = self.imageInfo[indexImageInfoArray]
+        let targetImageData = self.imageInfo[index]
+//        dataViewController.dataObject = self.imageInfo[indexImageInfoArray] as! String
         // dataViewControllerのインスタンス変数に情報を注入
         dataViewController.imageInfo = targetImageData as? NCMBObject
         // ここで二つのVCを返却すればいい感じで次の画像も取得してセットしておくことができるかも。
@@ -60,35 +62,62 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
     func indexOfViewController(viewController: DataViewController) -> Int {
         // Return the index of the given data view controller.
         // For simplicity, this implementation uses a static array of model objects and the view controller stores the model object; you can therefore use the model object to identify the index.
-        return pageData.indexOf(viewController.dataObject) ?? NSNotFound
-//        return imageArray.objectAtIndex(viewController.dataImage) ?? NSNotFound
+//        return pageData.indexOf(viewController.dataObject) ?? NSNotFound
+        return self.imageInfo.indexOfObject(viewController.imageInfo!) ?? NSNotFound
     }
     
     // MARK: - Page View Controller Data Source
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+//        print("before")
+//        if (self.indexImageInfoArray == 0) || (self.indexImageInfoArray == NSNotFound) {
+//            return nil
+//        }
 //        self.indexImageInfoArray -= 1
-        if (self.indexImageInfoArray == 0) || (self.indexImageInfoArray == NSNotFound) {
-            return nil
-        }
-        self.indexImageInfoArray -= 1
-        return self.viewControllerAtIndex(self.indexImageInfoArray, storyboard: viewController.storyboard!)
-    }
-    
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        if self.indexImageInfoArray == NSNotFound {
+//        return self.viewControllerAtIndex(self.indexImageInfoArray, storyboard: viewController.storyboard!)
+        var index = self.indexOfViewController(viewController as! DataViewController)
+        print(index)
+        if (index == 0) || (index == NSNotFound) {
             return nil
         }
         
-        self.indexImageInfoArray += 1
-        if self.indexImageInfoArray == self.imageInfo.count {
+        index--
+        return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+//        print("after")
+//        if self.indexImageInfoArray == NSNotFound {
+//            return nil
+//        }
+//        
+//        self.indexImageInfoArray += 1
+//        if self.indexImageInfoArray == self.imageInfo.count {
+//            return nil
+//        }
+//        return self.viewControllerAtIndex(self.indexImageInfoArray, storyboard: viewController.storyboard!)
+        
+        print("after")
+        
+        var index = self.indexOfViewController(viewController as! DataViewController)
+        print(index)
+        if index == NSNotFound {
             return nil
         }
-        return self.viewControllerAtIndex(self.indexImageInfoArray, storyboard: viewController.storyboard!)
+        
+        index++
+//        if index == self.pageData.count {
+//            return nil
+//        }
+        return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
     }
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        var dvc = pageViewController.viewControllers![0] as! DataViewController
-        print(dvc)
+        if (completed) {
+            print("previous")
+            var dvc = pageViewController.viewControllers![0] as! DataViewController
+            print(dvc)
+        }
+        
         
     }
     

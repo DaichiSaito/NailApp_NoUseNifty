@@ -1,6 +1,6 @@
 import UIKit
 
-class upload: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class upload: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
 
     @IBOutlet weak var uploadTextView: UITextView!
@@ -17,6 +17,15 @@ class upload: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        var accessoryView = UIView(frame: CGRectMake(0, 0, 50, 44))
+        accessoryView.backgroundColor = UIColor.whiteColor()
+        var closeButton = UIButton(frame: CGRectMake(0, 0, 100, 30))
+        closeButton.setTitle("完了", forState: UIControlState.Normal)
+        closeButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        closeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Right
+        closeButton.addTarget(self, action: "onClickCloseButton:", forControlEvents: .TouchUpInside)
+        accessoryView.addSubview(closeButton)
+        uploadTextView.inputAccessoryView = accessoryView
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,6 +41,7 @@ class upload: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             let controller = UIImagePickerController()
             controller.delegate = self
             controller.sourceType = UIImagePickerControllerSourceType.Camera
+            controller.allowsEditing = true
             self.presentViewController(controller, animated: true, completion: nil)
         }
     }
@@ -42,6 +52,7 @@ class upload: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             let controller = UIImagePickerController()
             controller.delegate = self
             controller.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            controller.allowsEditing = true
             self.presentViewController(controller, animated: true, completion: nil)
         }
     }
@@ -49,9 +60,11 @@ class upload: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     // 写真を選択した時に呼ばれる
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if info[UIImagePickerControllerOriginalImage] != nil {
-            let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        if info[UIImagePickerControllerEditedImage] != nil {
+            var image = info[UIImagePickerControllerEditedImage] as! UIImage
 //            let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+            print(image)
+            image = resizeImage(image,width: 300,height: 300)
             print(image)
             self.uploadImageView.image = image
         }
@@ -154,6 +167,24 @@ class upload: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         body.appendString("\r\n")
         body.appendString("--\(boundary)--\r\n")
         return body
+    }
+    
+    func onClickCloseButton(sender: UIButton) {
+        uploadTextView.resignFirstResponder()
+    }
+    
+    func resizeImage(image: UIImage, width: Int, height: Int) -> UIImage {
+        let ref: CGImageRef = image.CGImage!
+        var srcWidth: Int = CGImageGetWidth(ref)
+        var srcHeight: Int = CGImageGetHeight(ref)
+        
+        var size: CGSize = CGSize(width: width, height: height)
+        UIGraphicsBeginImageContext(size)
+        image.drawInRect(CGRectMake(0, 0, size.width, size.height))
+        
+        var resizeImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return resizeImage
     }
 
 }

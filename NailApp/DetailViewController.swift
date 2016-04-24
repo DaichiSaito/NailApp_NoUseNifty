@@ -53,7 +53,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate {
         self.pageViewController!.didMoveToParentViewController(self)
         
         // Add the page view controller's gesture recognizers to the book view controller's view so that the gestures are started more easily.
-        self.view.gestureRecognizers = self.pageViewController!.gestureRecognizers
+//        self.view.gestureRecognizers = self.pageViewController!.gestureRecognizers
         
     
     }
@@ -62,9 +62,16 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate {
         // In more complex implementations, the model controller may be passed to the view controller.
         if _modelController == nil {
             // memoArrayとindexPathを引数にinitを呼ぶ
+//            _modelController = ModelController(_imageInfo: imageInfo, _indexPath: indexPath)
             _modelController = ModelController(_imageInfo: imageInfo, _indexPath: indexPath)
         }
         return _modelController!
+    }
+    
+    public func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+        print("presentationCount")
+        return 1
+//        return self.currentPageIndex
     }
 
 }

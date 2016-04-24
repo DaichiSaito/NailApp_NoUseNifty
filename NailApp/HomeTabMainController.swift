@@ -55,7 +55,9 @@ class HomeTabMainController: UIViewController, UIPageViewControllerDelegate {
         // ここのrootViewControllerにはselfを入れないといけないのかな？
         let navigationController:NavigationMainController = NavigationMainController(rootViewController: pageController)
         // New側のVC本体
-        let CollectionViewMainController1 = self.storyboard!.instantiateViewControllerWithIdentifier( "collectionViewMain" )
+        let CollectionViewMainController1 = self.storyboard!.instantiateViewControllerWithIdentifier( "collectionViewMain" ) as! CollectionViewMainController
+//        let topView = CollectionViewMainController1.topViewController as CollectionViewMainController
+        CollectionViewMainController1.orderByKey = "createDate"
         print("frame")
         print(CollectionViewMainController1.view.frame) // 414と736なので画面いっぱい
         print(self.view.frame) // 414と736なので画面いっぱい
@@ -63,7 +65,8 @@ class HomeTabMainController: UIViewController, UIPageViewControllerDelegate {
 //        CollectionViewMainController1.view.frame = rect
         CollectionViewMainController1.view.backgroundColor = UIColor.blueColor()
         // Popular側のVC本体。今はNew側と同じものを一旦設定している。
-        let CollectionViewMainController2 = self.storyboard!.instantiateViewControllerWithIdentifier( "collectionViewMain" )
+        let CollectionViewMainController2 = self.storyboard!.instantiateViewControllerWithIdentifier( "collectionViewMain" ) as! CollectionViewMainController
+        CollectionViewMainController2.orderByKey = "kawaiine"
 //        CollectionViewMainController2.view.frame = self.view.frame
         // この配列がNew,Popularのナビゲーションに対応している。そういう仕様。
         navigationController.viewControllerArray = [CollectionViewMainController1,CollectionViewMainController2]

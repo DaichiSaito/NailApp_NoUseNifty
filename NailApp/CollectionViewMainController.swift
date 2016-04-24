@@ -17,9 +17,28 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
     var favDataArray: NSArray = NSArray()
     var cellRect: CGRect?
     var favFlg: Bool = false
+    var orderByKey: String?
     @IBOutlet weak var FavImage: UIImageView!
     var imageInfo = []
     var userName: String?
+//    init(tabKind: String) {
+//        
+//    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    // memoArrayとindexPathを引数に持つinit
+    init(_tabKind: String) {
+        super.init(nibName: nil, bundle: nil)
+        if (_tabKind == "1") {
+            self.orderByKey = "createDate"
+        } else if (_tabKind == "2") {
+            self.orderByKey = "kawaiine"
+        }
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,12 +66,16 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
         
         let query: NCMBQuery = NCMBQuery(className: "image")
         if(userName == nil) {
+            query.orderByDescending(self.orderByKey!)
             
         } else {
             query.whereKey("userName", equalTo: userName!)
+            query.orderByDescending("createDate")
             
         }
-        query.orderByDescending("createDate")
+//        query.orderByDescending("createDate")
+//        query.orderByDescending("kawaiine")
+//        query.orderByDescending(self.orderByKey!)
         query.findObjectsInBackgroundWithBlock({(objects, error) in
             
             if error == nil {
@@ -103,6 +126,7 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
         let placeholder = UIImage(named: "transparent.png")
         let imageView = UIImageView()
         imageView.frame = self.cellRect!
+        print(self.cellRect!)
         cell.addSubview(imageView)
         imageView.setImageWithURL(url, placeholderImage: placeholder)
         // imageのAutoLayoutを解除してやる必要があるっぽい。
@@ -210,6 +234,8 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
         let rect:CGRect = CGRectMake(0, 0, width, height)
 
         self.cellRect = rect
+        print("width!!!!")
+        print(width)
         return CGSize(width: width, height: height) // The size of one cell
         
     }
