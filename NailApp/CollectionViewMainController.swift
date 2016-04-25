@@ -283,7 +283,13 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
     func updateFavData(targetFavData: AnyObject, imageView: UIImageView) {
 //        print(targetFavData)
         // imageのobjectIdを取得。
-        let objectIdOfImageInfo = targetFavData.objectForKey("objectId")!
+        var objectIdOfImageInfo: String
+        if (tabKindSign == "3") {
+            objectIdOfImageInfo = targetFavData.objectForKey("imageObjectId")! as! String
+        } else {
+            objectIdOfImageInfo = targetFavData.objectForKey("objectId")! as! String
+        }
+//        let objectIdOfImageInfo = targetFavData.objectForKey("objectId")!
         let imagePath = targetFavData.objectForKey("imagePath")!
         // ログイン中のユーザーの取得
         let carrentUser = NCMBUser.currentUser()
@@ -293,7 +299,7 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
         // imageのobjectIdとFavのimageObjectIdが一致するものを抽出
         // つまり、タップしたimageに対応するレコードがFavにあるかどうか。
         queryFav.whereKey("imageObjectId", equalTo: objectIdOfImageInfo)
-        queryFav.whereKey("myName", equalTo: userName)
+        queryFav.whereKey("myName", equalTo: myName)
         queryFav.findObjectsInBackgroundWithBlock({(items, error) in
 
             if error == nil {
@@ -319,7 +325,7 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
                                 objImage.incrementKey("kawaiine",byAmount: -1)
                                 objImage.save(&saveError)
                             } else {
-                                print("kawaiine保存時にエラーが発生しました: \(error)")
+                                print("favFlgがtrue時のkawaiine保存時にエラーが発生しました: \(error)")
                             }
                         })
                         
@@ -334,7 +340,7 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
                                 objImage.incrementKey("kawaiine",byAmount: 1)
                                 objImage.save(&saveError)
                             } else {
-                                print("kawaiine保存時にエラーが発生しました: \(error)")
+                                print("favFlgがfalse時のkawaiine保存時にエラーが発生しました: \(error)")
                             }
                         })
                     }
