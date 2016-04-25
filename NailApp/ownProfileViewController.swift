@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ownProfileViewController: UIViewController {
+class ownProfileViewController: UIViewController, TabBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +44,15 @@ class ownProfileViewController: UIViewController {
         print(carrentUser)
 //        controller.tmpCustomerId = carrentUser.userName
         controller.tmpUserName = carrentUser.userName
+//        controller.tmpUserName = carrentUser.userName
+        controller.ownORotherFlg = "1"
         
         
+    }
+    
+    func didSelectTab(tabBarController: TabBarController) {
+        print("ownProfileViewController!")
+        return
     }
     
 }

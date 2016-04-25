@@ -88,7 +88,7 @@ class NavigationMainController: UINavigationController,UIPageViewControllerDeleg
         let numControllers :Int = viewControllerArray.count
         
         if (buttonText.count == 0) {
-            buttonText = ["New","Popular"] //%%%buttontitle
+            buttonText = ["New","Popular","Favorite"] //%%%buttontitle
         }
         
         for (var i = 0 ; i < numControllers; i++) {

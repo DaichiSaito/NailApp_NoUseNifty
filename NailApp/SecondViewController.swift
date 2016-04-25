@@ -176,6 +176,10 @@ class SecondViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        password.resignFirstResponder()
+        userName.resignFirstResponder()
+    }
 
 }
 

@@ -66,6 +66,7 @@ class DataViewController: UIViewController {
         
         let controller = segue.destinationViewController as! DetailUserController
         controller.tmpUserName = self.imageInfo?.objectForKey("userName") as? String
+        controller.ownORotherFlg = "2"
         
         
     }

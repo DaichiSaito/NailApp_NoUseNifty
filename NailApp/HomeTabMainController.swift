@@ -58,6 +58,7 @@ class HomeTabMainController: UIViewController, UIPageViewControllerDelegate {
         let CollectionViewMainController1 = self.storyboard!.instantiateViewControllerWithIdentifier( "collectionViewMain" ) as! CollectionViewMainController
 //        let topView = CollectionViewMainController1.topViewController as CollectionViewMainController
         CollectionViewMainController1.orderByKey = "createDate"
+        CollectionViewMainController1.tabKindSign = "1"
         print("frame")
         print(CollectionViewMainController1.view.frame) // 414と736なので画面いっぱい
         print(self.view.frame) // 414と736なので画面いっぱい
@@ -67,9 +68,14 @@ class HomeTabMainController: UIViewController, UIPageViewControllerDelegate {
         // Popular側のVC本体。今はNew側と同じものを一旦設定している。
         let CollectionViewMainController2 = self.storyboard!.instantiateViewControllerWithIdentifier( "collectionViewMain" ) as! CollectionViewMainController
         CollectionViewMainController2.orderByKey = "kawaiine"
+        CollectionViewMainController2.tabKindSign = "2"
 //        CollectionViewMainController2.view.frame = self.view.frame
+        // FavoriteのVC本体。
+        let CollectionViewMainController3 = self.storyboard!.instantiateViewControllerWithIdentifier( "collectionViewMain" ) as! CollectionViewMainController
+        CollectionViewMainController3.orderByKey = "createDate"
+        CollectionViewMainController3.tabKindSign = "3"
         // この配列がNew,Popularのナビゲーションに対応している。そういう仕様。
-        navigationController.viewControllerArray = [CollectionViewMainController1,CollectionViewMainController2]
+        navigationController.viewControllerArray = [CollectionViewMainController1,CollectionViewMainController2,CollectionViewMainController3]
         // navigationControllerをHomeTabViewにaddChildViewController
         self.addChildViewController(navigationController)
         // navigationControlleのviewをHomeTabViewが持っているサブビュー部分にaddSubView

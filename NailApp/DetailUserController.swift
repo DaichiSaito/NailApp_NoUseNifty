@@ -11,23 +11,72 @@ import UIKit
 class DetailUserController: UIViewController {
     
     
-    @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var profileComment: UITextView!
+    @IBAction func editProfileButton(sender: AnyObject) {
+    }
+    @IBOutlet weak var nickName: UILabel!
+    @IBOutlet weak var ProfileComment: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     var tmpCustomerId: String?
     var tmpUserName: String?
+    var tmpNickName: String?
     var imageInfo = []
+    var ownORotherFlg: String? // "1"が自分のプロフィール表示時。"2"が他人のプロフィール表示時
     override func viewDidLoad() {
         super.viewDidLoad()
-        userName.text = self.tmpUserName
-        getProfileImagePath()
-//        setProfileImage()
+//        self.setProfile()
+//        getProfileImagePath()
+    }
+    override func viewWillAppear(animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        self.setProfile()
+        
+    }
+    
+    func setProfile() {
+        nickName.text = self.tmpNickName
+        let userQuery = NCMBUser.query()
+        userQuery.whereKey("userName", equalTo: self.tmpUserName)
+        userQuery.findObjectsInBackgroundWithBlock({(items, error) in
+            
+            if error == nil {
+                print("登録件数：\(items.count)")
+                // items.countは1か0しかない。
+                if items.count > 0 {
+                    let comment: String = ((items[0].objectForKey("comment") as? String))!
+                    let nickName: String = ((items[0].objectForKey("nickName") as? String))!
+                    let imagePath: String = ((items[0].objectForKey("imagePath") as? String))!
+                    self.ProfileComment.text = comment
+                    self.nickName.text = nickName
+                    
+                    let url = NSURL(string: imagePath)
+                    let placeholder = UIImage(named: "transparent.png")
+                    self.profileImage.setImageWithURL(url, placeholderImage: placeholder)
+                    
+                } else {
+                    
+                    
+                }
+            }
+            
+            
+        })
+
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print("segue")
-        let controller = segue.destinationViewController as! CollectionViewMainController
-        controller.userName = tmpUserName!
+        if (segue.identifier == "segueToEdit") {
+            // プロフィール編集処理画面遷移時
+            let controller = segue.destinationViewController as! editProfileViewController
+            controller.tmpNickName = self.nickName.text
+            controller.tmpProfileComment = self.ProfileComment.text
+            
+        } else if (segue.identifier == "segueToCollectionView") {
+            let controller = segue.destinationViewController as! CollectionViewMainController
+            controller.userName = tmpUserName!
+        }
+
         
     }
     func setProfileImage() {

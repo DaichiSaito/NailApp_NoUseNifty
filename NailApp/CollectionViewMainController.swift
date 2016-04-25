@@ -21,6 +21,11 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var FavImage: UIImageView!
     var imageInfo = []
     var userName: String?
+    // "0" -> 初期値
+    // "1" -> New
+    // "2" -> Popular
+    // "3" -> Favorite
+    var tabKindSign = "0" as String
 //    init(tabKind: String) {
 //        
 //    }
@@ -29,15 +34,15 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
         super.init(coder: aDecoder)
     }
     // memoArrayとindexPathを引数に持つinit
-    init(_tabKind: String) {
-        super.init(nibName: nil, bundle: nil)
-        if (_tabKind == "1") {
-            self.orderByKey = "createDate"
-        } else if (_tabKind == "2") {
-            self.orderByKey = "kawaiine"
-        }
-
-    }
+//    init(_tabKind: String) {
+//        super.init(nibName: nil, bundle: nil)
+//        if (_tabKind == "1") {
+//            self.orderByKey = "createDate"
+//        } else if (_tabKind == "2") {
+//            self.orderByKey = "kawaiine"
+//        }
+//
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,20 +68,44 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
          * NCMBQuery.hを参照するとNCMBQueryのインスタンスメソッドの引数にとるべき値等が見れます。
          *
          */
-        
-        let query: NCMBQuery = NCMBQuery(className: "image")
-        if(userName == nil) {
-            query.orderByDescending(self.orderByKey!)
-            
-        } else {
-            query.whereKey("userName", equalTo: userName!)
-            query.orderByDescending("createDate")
-            
+        var query: NCMBQuery?
+        let currentuser = NCMBUser.currentUser()
+        if (tabKindSign == "0") {
+            query = NCMBQuery(className: "image")
+            query!.whereKey("userName", equalTo: userName!)
+            query!.orderByDescending("createDate")
+        } else if (tabKindSign == "1") {
+            query = NCMBQuery(className: "image")
+            query!.orderByDescending(self.orderByKey!)
+        } else if (tabKindSign == "2") {
+            query = NCMBQuery(className: "image")
+            query!.orderByDescending(self.orderByKey!)
+        } else if (tabKindSign == "3") {
+            query = NCMBQuery(className: "Fav")
+            // ここ要修正。curentuserがnilの場合を考慮できていない。
+            // nilの場合というのはログインしていない場合
+            // つまりログインしてねのダイアログ表示が必要。
+            // TODO(4/25記載)
+            // 解決(x/xx)
+            query!.whereKey("myName", equalTo: currentuser.userName)
+            query!.orderByDescending(self.orderByKey!)
         }
+//        if(userName == nil) {
+//            query.orderByDescending(self.orderByKey!)
+//            if (self.tabKindSign == "3") {
+//                query.whereKey("userName", equalTo: userName!)
+//            }
+//            
+//        } else {
+//            // userNameがnilじゃない場合というのは、DetailUserViewControllerの場合なはず。
+//            query.whereKey("userName", equalTo: userName!)
+//            query.orderByDescending("createDate")
+//            
+//        }
 //        query.orderByDescending("createDate")
 //        query.orderByDescending("kawaiine")
 //        query.orderByDescending(self.orderByKey!)
-        query.findObjectsInBackgroundWithBlock({(objects, error) in
+        query!.findObjectsInBackgroundWithBlock({(objects, error) in
             
             if error == nil {
                 
@@ -89,6 +118,7 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
                 }
                 
             } else {
+                print("エラー")
                 print(error.localizedDescription)
             }
         })
@@ -109,7 +139,7 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
-        print(self.view.bounds.size.width)
+//        print(self.view.bounds.size.width)
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -126,7 +156,7 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
         let placeholder = UIImage(named: "transparent.png")
         let imageView = UIImageView()
         imageView.frame = self.cellRect!
-        print(self.cellRect!)
+//        print(self.cellRect!)
         cell.addSubview(imageView)
         imageView.setImageWithURL(url, placeholderImage: placeholder)
         // imageのAutoLayoutを解除してやる必要があるっぽい。
@@ -179,8 +209,13 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
         }
     }
     func setInitFavImage(targetFavData: AnyObject, cell: MyCollectionViewCell, favImageView: UIImageView) {
-        print(targetFavData)
+//        print(targetFavData)
         // imageのobjectIdを取得。
+        
+        if (tabKindSign == "3") {
+            favImageView.image = UIImage(named: "heart_like.png")
+            return
+        }
         let objectIdOfImageInfo = targetFavData.objectForKey("objectId")
         
         // nifty_cloudのFavテーブルオブジェクトを取得。
@@ -192,12 +227,12 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
         let carrentUser = NCMBUser.currentUser()
         if(carrentUser != nil) {
             let userName = carrentUser.userName
-            queryFav.whereKey("userName", equalTo: userName)
+            queryFav.whereKey("myName", equalTo: userName)
         }
         queryFav.findObjectsInBackgroundWithBlock({(items, error) in
             
             if error == nil {
-                print("登録件数：\(items.count)")
+//                print("登録件数：\(items.count)")
                 // items.countは1か0しかない。
                 if items.count > 0 {
                     let favFlg: Bool = ((items[0].objectForKey("favFlg") as? Bool))!
@@ -234,8 +269,8 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
         let rect:CGRect = CGRectMake(0, 0, width, height)
 
         self.cellRect = rect
-        print("width!!!!")
-        print(width)
+//        print("width!!!!")
+//        print(width)
         return CGSize(width: width, height: height) // The size of one cell
         
     }
@@ -246,18 +281,19 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
     }
 //    // Favを更新。（かわいいねの数やハート画像の更新）
     func updateFavData(targetFavData: AnyObject, imageView: UIImageView) {
-        print(targetFavData)
+//        print(targetFavData)
         // imageのobjectIdを取得。
         let objectIdOfImageInfo = targetFavData.objectForKey("objectId")!
+        let imagePath = targetFavData.objectForKey("imagePath")!
         // ログイン中のユーザーの取得
         let carrentUser = NCMBUser.currentUser()
-        let userName = carrentUser.userName
+        let myName = carrentUser.userName
         // nifty_cloudのFavテーブルオブジェクトを取得。
         let queryFav: NCMBQuery = NCMBQuery(className: "Fav")
         // imageのobjectIdとFavのimageObjectIdが一致するものを抽出
         // つまり、タップしたimageに対応するレコードがFavにあるかどうか。
         queryFav.whereKey("imageObjectId", equalTo: objectIdOfImageInfo)
-        queryFav.whereKey("userName", equalTo: userName)
+        queryFav.whereKey("myName", equalTo: userName)
         queryFav.findObjectsInBackgroundWithBlock({(items, error) in
 
             if error == nil {
@@ -322,7 +358,9 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
                 } else {
                     let objFav: NCMBObject = NCMBObject(className: "Fav")
                     objFav.setObject(targetFavData.objectForKey("objectId"), forKey: "imageObjectId")
-                    objFav.setObject(userName, forKey: "userName")
+                    objFav.setObject(targetFavData.objectForKey("imagePath"), forKey: "imagePath")
+                    objFav.setObject(targetFavData.objectForKey("userName"), forKey: "userName")
+                    objFav.setObject(myName, forKey: "myName")
                     objFav.setObject(true, forKey: "favFlg")
                     objFav.save(&saveError)
                     

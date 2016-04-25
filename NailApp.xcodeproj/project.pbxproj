@@ -21,9 +21,13 @@
 		944CC9E81C9017900029C723 /* CollectionViewMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CC9E71C9017900029C723 /* CollectionViewMainController.swift */; };
 		944CC9EA1C901A3B0029C723 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944CC9E91C901A3B0029C723 /* MyCollectionViewCell.swift */; };
 		9476AFB61C903B4000A16B6B /* chooseFromCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9476AFB51C903B4000A16B6B /* chooseFromCamera.swift */; };
+		94A85C6B1CCD07C4009368D1 /* TabBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A85C6A1CCD07C4009368D1 /* TabBarDelegate.swift */; };
+		94A85C6D1CCD07FC009368D1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A85C6C1CCD07FC009368D1 /* TabBarController.swift */; };
+		94A85C6F1CCD0A1E009368D1 /* navigationViewControllerForOwnProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A85C6E1CCD0A1E009368D1 /* navigationViewControllerForOwnProfile.swift */; };
 		94B96E011CBA06980043F88B /* ownProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B96E001CBA06980043F88B /* ownProfileViewController.swift */; };
 		94B96E031CBB0A3E0043F88B /* settingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B96E021CBB0A3E0043F88B /* settingViewController.swift */; };
 		94B96E051CBB13EC0043F88B /* uploadProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B96E041CBB13EC0043F88B /* uploadProfileViewController.swift */; };
+		94C0D92D1CCCAEE800FB9EA5 /* editProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C0D92C1CCCAEE800FB9EA5 /* editProfileViewController.swift */; };
 		94C5AE9D1CB0B42C0040DA38 /* transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 94C5AE9C1CB0B42C0040DA38 /* transparent.png */; };
 		94C5AE9F1CB11B3D0040DA38 /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C5AE9E1CB11B3D0040DA38 /* Macro.swift */; };
 		94C917B91C93A4280031FAE9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C917B81C93A4280031FAE9 /* DetailViewController.swift */; };
@@ -52,9 +56,13 @@
 		944CC9E71C9017900029C723 /* CollectionViewMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewMainController.swift; sourceTree = "<group>"; };
 		944CC9E91C901A3B0029C723 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		9476AFB51C903B4000A16B6B /* chooseFromCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chooseFromCamera.swift; sourceTree = "<group>"; };
+		94A85C6A1CCD07C4009368D1 /* TabBarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarDelegate.swift; sourceTree = "<group>"; };
+		94A85C6C1CCD07FC009368D1 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		94A85C6E1CCD0A1E009368D1 /* navigationViewControllerForOwnProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = navigationViewControllerForOwnProfile.swift; sourceTree = "<group>"; };
 		94B96E001CBA06980043F88B /* ownProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ownProfileViewController.swift; sourceTree = "<group>"; };
 		94B96E021CBB0A3E0043F88B /* settingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingViewController.swift; sourceTree = "<group>"; };
 		94B96E041CBB13EC0043F88B /* uploadProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = uploadProfileViewController.swift; sourceTree = "<group>"; };
+		94C0D92C1CCCAEE800FB9EA5 /* editProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editProfileViewController.swift; sourceTree = "<group>"; };
 		94C5AE9C1CB0B42C0040DA38 /* transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = transparent.png; path = ../../AFNetworkingTest/AFNetworkingTest/transparent.png; sourceTree = "<group>"; };
 		94C5AE9E1CB11B3D0040DA38 /* Macro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
 		94C917B81C93A4280031FAE9 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -109,11 +117,15 @@
 				944CC9E71C9017900029C723 /* CollectionViewMainController.swift */,
 				9476AFB51C903B4000A16B6B /* chooseFromCamera.swift */,
 				9439561D1CB90E60001FB085 /* DetailUserController.swift */,
+				94C0D92C1CCCAEE800FB9EA5 /* editProfileViewController.swift */,
 				944B88131C8A8FD60042E911 /* FirstViewController.swift */,
 				944CC9E31C9014510029C723 /* HomeTabMainController.swift */,
 				944CC9E51C9015780029C723 /* NavigationMainController.swift */,
 				944B88151C8A8FD60042E911 /* SecondViewController.swift */,
+				94A85C6A1CCD07C4009368D1 /* TabBarDelegate.swift */,
+				94A85C6C1CCD07FC009368D1 /* TabBarController.swift */,
 				944B88171C8A8FD60042E911 /* Main.storyboard */,
+				94A85C6E1CCD0A1E009368D1 /* navigationViewControllerForOwnProfile.swift */,
 				944CC9E91C901A3B0029C723 /* MyCollectionViewCell.swift */,
 				944B881A1C8A8FD60042E911 /* Assets.xcassets */,
 				944B881C1C8A8FD60042E911 /* LaunchScreen.storyboard */,
@@ -266,6 +278,7 @@
 			files = (
 				94C917B91C93A4280031FAE9 /* DetailViewController.swift in Sources */,
 				94C917BB1C93D4390031FAE9 /* ModelController.swift in Sources */,
+				94A85C6B1CCD07C4009368D1 /* TabBarDelegate.swift in Sources */,
 				94B96E031CBB0A3E0043F88B /* settingViewController.swift in Sources */,
 				94B96E051CBB13EC0043F88B /* uploadProfileViewController.swift in Sources */,
 				944CC9E61C9015780029C723 /* NavigationMainController.swift in Sources */,
@@ -278,8 +291,11 @@
 				944591D41CC1CCA90088D60A /* upload.swift in Sources */,
 				944B88121C8A8FD60042E911 /* AppDelegate.swift in Sources */,
 				944B88141C8A8FD60042E911 /* FirstViewController.swift in Sources */,
+				94A85C6F1CCD0A1E009368D1 /* navigationViewControllerForOwnProfile.swift in Sources */,
+				94C0D92D1CCCAEE800FB9EA5 /* editProfileViewController.swift in Sources */,
 				944CC9E41C9014510029C723 /* HomeTabMainController.swift in Sources */,
 				9439561E1CB90E60001FB085 /* DetailUserController.swift in Sources */,
+				94A85C6D1CCD07FC009368D1 /* TabBarController.swift in Sources */,
 				9476AFB61C903B4000A16B6B /* chooseFromCamera.swift in Sources */,
 				94C917BD1C93D44C0031FAE9 /* DataViewController.swift in Sources */,
 			);
