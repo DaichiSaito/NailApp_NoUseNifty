@@ -216,6 +216,10 @@ class CollectionViewMainController: UIViewController, UICollectionViewDelegate, 
             favImageView.image = UIImage(named: "heart_like.png")
             return
         }
+        if (NCMBUser.currentUser() == nil) {
+            favImageView.image = UIImage(named: "heart_unlike.png")
+            return
+        }
         let objectIdOfImageInfo = targetFavData.objectForKey("objectId")
         
         // nifty_cloudのFavテーブルオブジェクトを取得。

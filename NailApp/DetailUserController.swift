@@ -13,6 +13,7 @@ class DetailUserController: UIViewController {
     
     @IBAction func editProfileButton(sender: AnyObject) {
     }
+    @IBOutlet weak var editProfileButtonOutlet: UIButton!
     @IBOutlet weak var nickName: UILabel!
     @IBOutlet weak var ProfileComment: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
@@ -30,6 +31,9 @@ class DetailUserController: UIViewController {
         
         super.viewWillAppear(animated)
         self.setProfile()
+        if (ownORotherFlg == "2") {
+            self.editProfileButtonOutlet.hidden = true
+        }
         
     }
     
